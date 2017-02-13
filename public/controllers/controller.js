@@ -7,16 +7,34 @@ const votingApp = angular.module('votingApp', []);
 votingApp.controller('votingAppController', ['$scope', '$http', ($scope, $http) => {
 
     $scope.poll = {
-        name:
-        option1:
-        option2:
+        name: '',
+        options: [
+            {
+                choice: '',
+                score: 0
+            },
+            {
+                choice: '',
+                score: 0
+            }
+        ]
     };
 
     $scope.createPoll = () => {
-        console.log($scope.poll)
+        console.log($scope.poll);
     };
 
-    $http.get('/').then(res => {
-        console.log('I got the data I requested');
-    });
+    $scope.addOption = () => {
+        const length = $scope.poll.options.length;
+        console.log($scope.poll.options[length-1].choice);
+
+        // add another option if the last object in the array is not empty
+        if ($scope.poll.options[length-1].choice !== '') {
+            $scope.poll.options.push({ choice: '', score: 0 });
+        }
+    };
+
+    // $http.get('/').then(res => {
+    //     console.log('I got the data I requested');
+    // });
 }]);

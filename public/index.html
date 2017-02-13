@@ -11,7 +11,6 @@
 
 <body>
     <div class="container" ng-controller="votingAppController">
-
         <header class="jumbotron">
             <div class="text-center">
                 <h1>Voting App!</h1>
@@ -19,31 +18,26 @@
                 <a class="btn btn-primary btn-lg" href="#">View Polls</a>
             </div>
         </header>
-
         <div class="row col-lg-6 col-lg-offset-3 text-center">
             <h1>New Poll</h1>
-            <form action="/polls" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Poll Name" ng-model="poll.name">
+            </div>
+            <hr>
+            <h3>Options</h3>
+            <div ng-repeat="option in poll.options">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="pollName" placeholder="Poll Name" ng-model="poll.name">
+                    <input class="form-control" type="text" placeholder="Option" ng-model="option.choice">
                 </div>
-                <hr>
-                <h3>Options</h3>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="option1" placeholder="Option" ng-model="poll.option1">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="option2" placeholder="Option" ng-model="poll.option2">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-lg">More Options</button>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-success btn-lg" ng-click="createPoll()">Create Poll</button>
-                </div>
-            </form>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-lg" ng-click="addOption()">More Options</button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg" ng-click="createPoll()">Create Poll</button>
+            </div>
         </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="controllers/controller.js"></script>
 </body>
