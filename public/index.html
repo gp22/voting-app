@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="votingApp">
 
 <head>
     <title>Voting App</title>
@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container" ng-controller="appcontrol">
+    <div class="container" ng-controller="votingAppController">
 
         <header class="jumbotron">
             <div class="text-center">
@@ -24,13 +24,21 @@
             <h1>New Poll</h1>
             <form action="/polls" method="POST">
                 <div class="form-group">
-                    <input class="form-control" type="text" name="option" placeholder="option">
+                    <input class="form-control" type="text" name="pollName" placeholder="Poll Name" ng-model="poll.name">
+                </div>
+                <hr>
+                <h3>Options</h3>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="option1" placeholder="Option" ng-model="poll.option1">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="option" placeholder="option">
+                    <input class="form-control" type="text" name="option2" placeholder="Option" ng-model="poll.option2">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-lg">Create Poll</button>
+                    <button class="btn btn-primary btn-lg">More Options</button>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-lg" ng-click="createPoll()">Create Poll</button>
                 </div>
             </form>
         </div>
