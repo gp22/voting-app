@@ -1,9 +1,10 @@
 'use strict';
 
 const express = require('express');
-const mongo = require('mongodb');
+const mongoose = require('mongoose');
 // This line may be totally unnecessary
 // const routes = require('./app/routes/index.js');
+const bodyParser = require('body-parser');
 const app = express();
 
 /*
@@ -16,15 +17,46 @@ const uri = (process.env.MLAB_URI) ? process.env.MLAB_URI : 'mongodb://localhost
 // use process.env.PORT for compatibility with heroku or 3000 for local
 const port = (process.env.PORT) ? process.env.PORT : 3000;
 
-mongo.connect(uri, (err, db) => {
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+
+/*
+Define schemas and models
+*/
+
+/*
+Define routes
+*/
+
+/*
+create a page listing all polls, url will be:
+gp22-voting.herokuapp.com/polls
+individual urls for polls will be gp22-voting.herokuapp.com/polls/:pollid
+
+create a dashboard page for authenticated users, url will be:
+gp22-voting.herokuapp.com/:userid
+requirements:
+in the main header there will be buttons for new poll and view polls
+on new poll page there will be a form with inputs for poll name, and an input
+for each available option. there will need to be a button to add more options
+and a submit button which creates the new poll
+when the new poll is created the link to the new poll will be shown in place
+of where the new poll form was. the url for the poll will be:
+gp22-voting.herokuapp.com/:userid/:pollname
+*/
+
+
+/*
+Connect to mongodb and start server
+*/
+
+mongoose.connect(uri, (err, db) => {
 
     if (err) {
         throw new Error('Database failed to connect!');
     } else {
         console.log('Successfully connected to MongoDB...');
     }
-
-    app.use(express.static(__dirname + '/public'));
 
     app.listen(port, () => {
         console.log(`Node.js listening on port ${port}...`);
