@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="votingApp">
 
 <head>
     <title>Voting App</title>
@@ -10,8 +10,33 @@
 </head>
 
 <body>
-    <div class="container" ng-controller="appcontrol">
-        <h1>Voting App!</h1>
+    <div class="container" ng-controller="votingAppController">
+        <header class="jumbotron">
+            <div class="text-center">
+                <h1>Voting App!</h1>
+                <a class="btn btn-success btn-lg" href="#">New Poll</a>
+                <a class="btn btn-primary btn-lg" href="#">View Polls</a>
+            </div>
+        </header>
+        <div class="row col-lg-6 col-lg-offset-3 text-center">
+            <h1>New Poll</h1>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Poll Name" ng-model="poll.name">
+            </div>
+            <hr>
+            <h3>Options</h3>
+            <div ng-repeat="option in poll.options">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Option" ng-model="option.choice">
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-lg" ng-click="addOption()">More Options</button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg" ng-click="createPoll()">Create Poll</button>
+            </div>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="controllers/controller.js"></script>
