@@ -22,7 +22,7 @@ angular.
                             '<button class="btn btn-primary btn-block" ng-click="$ctrl.addOption()">Add Option</button>' +
                         '</div>' +
                     '<div class="form-group">' +
-                        '<button class="btn btn-success btn-block" ng-click="createPoll()">Create Poll</button>' +
+                        '<button class="btn btn-success btn-block" ng-click="$ctrl.createPoll()">Create Poll</button>' +
                     '</div>' +
                 '</div>' +
             '</div>',
@@ -44,10 +44,9 @@ angular.
 
             // send poll data to server.js
             this.createPoll = () => {
-                // const poll = $scope.poll;
+                const poll = this.poll;
                 const options = poll.options;
-                const length = poll.options.length;
-                console.log(poll);
+                const length = options.length;
 
                 // remove the last additional option if it was left blank
                 if (length > 2 && poll.options[length-1].choice === '') {
@@ -73,7 +72,6 @@ angular.
             this.addOption = () => {
                 const options = this.poll.options;
                 const length = options.length;
-                // console.log(options[length-1].choice);
 
                 // add an option if the last object in the array is not empty
                 if (options[length-1].choice !== '') {
