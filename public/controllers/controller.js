@@ -20,20 +20,37 @@ votingApp.controller('votingAppController', ['$scope', '$http', ($scope, $http) 
         ]
     };
 
+    // send poll data to server.js
     $scope.createPoll = () => {
-        console.log($scope.poll);
-        $http.post('/', $scope.poll).then(res => {
-            console.log(res.data);
-        });
+        const poll = $scope.poll;
+        const options = poll.options;
+        const length = poll.options.length;
+        console.log(poll);
+
+        // remove the last additional option if it was left blank
+        if (length > 2 && poll.options[length-1].choice === '') {
+            poll.options.pop();
+        }
+
+        // send poll to server.js if no fields were left empty
+        if (poll.name != '' &&
+            options[0].choice != '' &&
+            options[1].choice != '') {
+            $http.post('/', poll).then(res => {
+                console.log(res.data);
+            });
+        }
     };
 
+    // add another option input field to poll creation form
     $scope.addOption = () => {
-        const length = $scope.poll.options.length;
-        console.log($scope.poll.options[length-1].choice);
+        const options = $scope.poll.options;
+        const length = options.length;
+        // console.log(options[length-1].choice);
 
         // add another option if the last object in the array is not empty
-        if ($scope.poll.options[length-1].choice !== '') {
-            $scope.poll.options.push({ choice: '', score: 0 });
+        if (options[length-1].choice !== '') {
+            options.push({ choice: '', score: 0 });
         }
     };
 

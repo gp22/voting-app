@@ -12,7 +12,7 @@ Use the heroku environment variable MLAB_URI to store the db name and login
 for use with Mlab or localhost:27017 for local testing
 Set the heroku variable with the command 'heroku config:set MLAB_URI='
 */
-const uri = (process.env.MLAB_URI) ? process.env.MLAB_URI : 'mongodb://localhost:27017/test';
+const uri = (process.env.MLAB_URI) ? process.env.MLAB_URI : 'mongodb://localhost:27017/voting_app';
 
 // use process.env.PORT for compatibility with heroku or 3000 for local
 const port = (process.env.PORT) ? process.env.PORT : 3000;
@@ -33,6 +33,8 @@ const Poll = mongoose.model('Poll', pollSchema);
 /*
 Define routes
 */
+
+// receive new poll data from controller.js
 app.post('/', (req, res) => {
     console.log(req.body);
 
