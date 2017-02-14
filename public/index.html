@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 
-<body ng-controller="votingAppController">
+<body>
     <div class="jumbotron">
         <header class="container">
             <div class="text-center">
@@ -20,30 +20,11 @@
         </header>
     </div>
     <!-- begin new form module -->
-    <div class="container">
-        <div class="row col-lg-6 col-lg-offset-3 text-center">
-            <h1>New Poll</h1>
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Poll Name" ng-model="poll.name">
-                </div>
-            <hr>
-            <h3>Options</h3>
-            <div ng-repeat="option in poll.options">
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Option" ng-model="option.choice">
-                </div>
-            </div>
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" ng-click="addOption()">Add Option</button>
-                </div>
-            <div class="form-group">
-                <button class="btn btn-success btn-block" ng-click="createPoll()">Create Poll</button>
-            </div>
-        </div>
-    </div>
+    <new-poll-form></new-poll-form>
     <!-- end new form module -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script src="controllers/controller.js"></script>
+    <script src="controllers/new-poll-form.component.js"></script>
 </body>
 
 </html>
