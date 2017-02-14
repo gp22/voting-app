@@ -2,7 +2,7 @@
 
 // Define the `votingAppController` controller on the `votingApp` module
 angular.
-    module('votingApp').
+    module('newPollForm').
     component('newPollForm', {
         template:
             '<div class="container">' +
