@@ -22,6 +22,9 @@ votingApp.controller('votingAppController', ['$scope', '$http', ($scope, $http) 
 
     $scope.createPoll = () => {
         console.log($scope.poll);
+        $http.post('/', $scope.poll).then(res => {
+            console.log(res.data);
+        });
     };
 
     $scope.addOption = () => {

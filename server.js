@@ -21,12 +21,29 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
 /*
-Define schemas and models
+Define schema and model for polls
 */
+const pollSchema = new mongoose.Schema({
+    name: String,
+    options: Array
+});
+
+const Poll = mongoose.model('Poll', pollSchema);
 
 /*
 Define routes
 */
+app.post('/', (req, res) => {
+    console.log(req.body);
+
+    Poll.create(req.body, (err, poll) => {
+        if (err) {
+            console.log('Error creating poll');
+        } else {
+            res.json(poll);
+        }
+    });
+});
 
 /*
 create a page listing all polls, url will be:
@@ -49,7 +66,6 @@ gp22-voting.herokuapp.com/:userid/:pollname
 /*
 Connect to mongodb and start server
 */
-
 mongoose.connect(uri, (err, db) => {
 
     if (err) {
