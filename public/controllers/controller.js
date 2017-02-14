@@ -37,7 +37,12 @@ votingApp.controller('votingAppController', ['$scope', '$http', ($scope, $http) 
             options[0].choice != '' &&
             options[1].choice != '') {
             $http.post('/', poll).then(res => {
-                console.log(res.data);
+                console.log(res.data._id);
+
+                /*
+                create a response with the url for the new poll
+                format: polls/id
+                */
             });
         }
     };
@@ -53,8 +58,4 @@ votingApp.controller('votingAppController', ['$scope', '$http', ($scope, $http) 
             options.push({ choice: '', score: 0 });
         }
     };
-
-    // $http.get('/').then(res => {
-    //     console.log('I got the data I requested');
-    // });
 }]);

@@ -47,6 +47,17 @@ app.post('/', (req, res) => {
     });
 });
 
+// redirect to a specific poll page with id :id
+app.get('/polls/:id', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+
+    /*
+    find the poll with the specified id
+    send the poll data in the response
+    */
+});
+
 /*
 create a page listing all polls, url will be:
 gp22-voting.herokuapp.com/polls
@@ -55,10 +66,7 @@ individual urls for polls will be gp22-voting.herokuapp.com/polls/:pollid
 create a dashboard page for authenticated users, url will be:
 gp22-voting.herokuapp.com/:userid
 requirements:
-in the main header there will be buttons for new poll and view polls
-on new poll page there will be a form with inputs for poll name, and an input
-for each available option. there will need to be a button to add more options
-and a submit button which creates the new poll
+
 when the new poll is created the link to the new poll will be shown in place
 of where the new poll form was. the url for the poll will be:
 gp22-voting.herokuapp.com/:userid/:pollname
