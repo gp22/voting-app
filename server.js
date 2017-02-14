@@ -17,7 +17,7 @@ const uri = (process.env.MLAB_URI) ? process.env.MLAB_URI : 'mongodb://localhost
 // use process.env.PORT for compatibility with heroku or 3000 for local
 const port = (process.env.PORT) ? process.env.PORT : 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
 /*

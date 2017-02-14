@@ -2,30 +2,9 @@
 
 // Define the `votingAppController` controller on the `votingApp` module
 angular.
-    module('votingApp').
+    module('newPollForm').
     component('newPollForm', {
-        template:
-            '<div class="container">' +
-                '<div class="row col-lg-6 col-lg-offset-3 text-center">' +
-                    '<h1>New Poll</h1>' +
-                        '<div class="form-group">' +
-                            '<input class="form-control" type="text" placeholder="Poll Name" ng-model="$ctrl.poll.name">' +
-                        '</div>' +
-                    '<hr>' +
-                    '<h3>Options</h3>' +
-                    '<div ng-repeat="option in $ctrl.poll.options">' +
-                        '<div class="form-group">' +
-                            '<input class="form-control" type="text" placeholder="Option" ng-model="option.choice">' +
-                        '</div>' +
-                    '</div>' +
-                        '<div class="form-group">' +
-                            '<button class="btn btn-primary btn-block" ng-click="$ctrl.addOption()">Add Option</button>' +
-                        '</div>' +
-                    '<div class="form-group">' +
-                        '<button class="btn btn-success btn-block" ng-click="$ctrl.createPoll()">Create Poll</button>' +
-                    '</div>' +
-                '</div>' +
-            '</div>',
+        templateUrl: 'new-poll-form/new-poll-form.template.html',
         controller: function newPollFormController($http) {
 
             this.poll = {
