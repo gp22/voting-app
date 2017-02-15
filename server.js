@@ -1,10 +1,10 @@
 'use strict';
-
-const express = require('express');
-const mongoose = require('mongoose');
 // This line may be totally unnecessary
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
+const Poll = require('./models/poll');
+const mongoose = require('mongoose');
+const express = require('express');
 const app = express();
 
 /*
@@ -19,16 +19,6 @@ const port = (process.env.PORT) ? process.env.PORT : 3000;
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
-
-/*
-Define schema and model for polls
-*/
-const pollSchema = new mongoose.Schema({
-    name: String,
-    options: Array
-});
-
-const Poll = mongoose.model('Poll', pollSchema);
 
 /*
 Define routes
