@@ -3,6 +3,7 @@
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
 const Poll = require('./models/poll');
+const User = require('./models/user');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
