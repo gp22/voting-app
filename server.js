@@ -1,10 +1,10 @@
 'use strict';
-
-const express = require('express');
-const mongoose = require('mongoose');
 // This line may be totally unnecessary
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
+const Poll = require('./models/poll');
+const mongoose = require('mongoose');
+const express = require('express');
 const app = express();
 
 /*
@@ -21,20 +21,14 @@ app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
 /*
-Define schema and model for polls
-*/
-const pollSchema = new mongoose.Schema({
-    name: String,
-    options: Array
-});
-
-const Poll = mongoose.model('Poll', pollSchema);
-
-/*
-Define routes
+Define RESTful routes
 */
 
-// receive new poll data from controller.js
+// INDEX route
+
+// NEW route
+
+// CREATE route
 app.post('/', (req, res) => {
     console.log(req.body);
 
@@ -47,7 +41,7 @@ app.post('/', (req, res) => {
     });
 });
 
-// redirect to a specific poll page with id :id
+// SHOW route
 app.get('/polls/:id', (req, res) => {
     const id = req.params.id;
     console.log(id);
@@ -58,20 +52,11 @@ app.get('/polls/:id', (req, res) => {
     */
 });
 
-/*
-create a page listing all polls, url will be:
-gp22-voting.herokuapp.com/polls
-individual urls for polls will be gp22-voting.herokuapp.com/polls/:pollid
+// EDIT route
 
-create a dashboard page for authenticated users, url will be:
-gp22-voting.herokuapp.com/:userid
-requirements:
+// UPDATE route
 
-when the new poll is created the link to the new poll will be shown in place
-of where the new poll form was. the url for the poll will be:
-gp22-voting.herokuapp.com/:userid/:pollname
-*/
-
+// DELETE route
 
 /*
 Connect to mongodb and start server
