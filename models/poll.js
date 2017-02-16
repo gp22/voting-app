@@ -5,7 +5,12 @@ Define schema and model for polls
 */
 const pollSchema = new mongoose.Schema({
     name: String,
-    options: Array
+    options: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Option'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Poll', pollSchema);

@@ -2,10 +2,12 @@
 // This line may be totally unnecessary
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
+const Option = require('./models/option');
 const Poll = require('./models/poll');
 const User = require('./models/user');
 const mongoose = require('mongoose');
 const express = require('express');
+const async = require('async');
 const app = express();
 
 /*
@@ -30,14 +32,35 @@ Define RESTful routes
 // NEW route
 
 // CREATE route
-app.post('/', (req, res) => {
-    console.log(req.body);
+app.post('/polls', (req, res) => {
+    // console.log(req.body.options);
 
-    Poll.create(req.body, (err, poll) => {
+    // first create the poll
+    Poll.create(req.body.name, (err, poll) => {
         if (err) {
-            console.log('Error creating poll');
+            console.log(err);
         } else {
-            res.json(poll);
+            // then use async to individually create each option
+            async.each(req.body.options, (option, callback) => {
+                Option.create(option, (err, option) => {
+                    if (err) {
+                        return callback(err);
+                        // console.log('error creating option');
+                    } else {
+                        poll.options.push(option);
+                        poll.save();
+                        callback();
+                    }
+                });
+            }, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // send the created poll when all options
+                    // are successfully created
+                    res.json(poll);
+                }
+            });
         }
     });
 });

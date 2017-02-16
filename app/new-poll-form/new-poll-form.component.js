@@ -8,14 +8,14 @@ angular.
         controller: function newPollFormController($http) {
 
             this.poll = {
-                name: '',
+                name: { name: '' },
                 options: [
                     {
-                        choice: '',
+                        name: '',
                         score: 0
                     },
                     {
-                        choice: '',
+                        name: '',
                         score: 0
                     }
                 ]
@@ -28,16 +28,16 @@ angular.
                 const length = options.length;
 
                 // remove the last additional option if it was left blank
-                if (length > 2 && poll.options[length-1].choice === '') {
+                if (length > 2 && poll.options[length-1].name === '') {
                     poll.options.pop();
                 }
 
                 // send poll to server.js if no fields were left empty
-                if (poll.name != '' &&
-                    options[0].choice != '' &&
-                    options[1].choice != '') {
-                    $http.post('/', poll).then(res => {
-                        console.log(res.data._id);
+                if (poll.name.name != '' &&
+                    options[0].name != '' &&
+                    options[1].name != '') {
+                    $http.post('/polls', poll).then(res => {
+                        console.log(res.data);
 
                         /*
                         create a response with the url for the new poll
@@ -53,8 +53,8 @@ angular.
                 const length = options.length;
 
                 // add an option if the last object in the array is not empty
-                if (options[length-1].choice !== '') {
-                    options.push({ choice: '', score: 0 });
+                if (options[length-1].name !== '') {
+                    options.push({ name: '', score: 0 });
                 }
             };
         }

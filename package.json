@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gp22/voting-app#readme",
   "dependencies": {
+    "async": "^2.1.4",
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "mongoose": "^4.8.2"
