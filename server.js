@@ -7,6 +7,7 @@ const Poll = require('./models/poll');
 const User = require('./models/user');
 const mongoose = require('mongoose');
 const express = require('express');
+const async = require('async');
 const app = express();
 
 /*
@@ -32,24 +33,34 @@ Define RESTful routes
 
 // CREATE route
 app.post('/polls', (req, res) => {
-    console.log(req.body.options);
+    // console.log(req.body.options);
 
+    // first create the poll
     Poll.create(req.body.name, (err, poll) => {
         if (err) {
             console.log(err);
         } else {
-            req.body.options.forEach(option => {
+            // then use async to individually create each option
+            async.each(req.body.options, (option, callback) => {
                 Option.create(option, (err, option) => {
                     if (err) {
-                        console.log('error creating option');
+                        return callback(err);
+                        // console.log('error creating option');
                     } else {
                         poll.options.push(option);
                         poll.save();
+                        callback();
                     }
                 });
-                console.log(poll);
+            }, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    // send the created poll when all options
+                    // are successfully created
+                    res.json(poll);
+                }
             });
-            // res.json(poll);
         }
     });
 });
