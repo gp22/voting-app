@@ -32,13 +32,24 @@ Define RESTful routes
 
 // CREATE route
 app.post('/polls', (req, res) => {
-    console.log(req.body.name);
+    console.log(req.body.options);
 
     Poll.create(req.body.name, (err, poll) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(poll);
+            req.body.options.forEach(option => {
+                Option.create(option, (err, option) => {
+                    if (err) {
+                        console.log('error creating option');
+                    } else {
+                        poll.options.push(option);
+                        poll.save();
+                    }
+                });
+                console.log(poll);
+            });
+            // res.json(poll);
         }
     });
 });
