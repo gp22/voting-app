@@ -2,6 +2,7 @@
 // This line may be totally unnecessary
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
+const Option = require('./models/option');
 const Poll = require('./models/poll');
 const User = require('./models/user');
 const mongoose = require('mongoose');
@@ -30,12 +31,12 @@ Define RESTful routes
 // NEW route
 
 // CREATE route
-app.post('/', (req, res) => {
-    console.log(req.body);
+app.post('/polls', (req, res) => {
+    console.log(req.body.name);
 
-    Poll.create(req.body, (err, poll) => {
+    Poll.create(req.body.name, (err, poll) => {
         if (err) {
-            console.log('Error creating poll');
+            console.log(err);
         } else {
             res.json(poll);
         }
