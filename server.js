@@ -30,6 +30,9 @@ Define RESTful routes
 // INDEX route
 
 // NEW route
+// app.get('/polls/new', (req, res) => {
+//     res.sendFile('/app/index.html');
+// });
 
 // CREATE route
 app.post('/polls', (req, res) => {
@@ -86,6 +89,11 @@ app.get('/polls/:id', (req, res) => {
 // UPDATE route
 
 // DELETE route
+
+// Catch all route for angular requests
+// app.get('*', (req, res) => {
+//     res.sendFile('./app/index.html');
+// });
 
 /*
 Connect to mongodb and start server
