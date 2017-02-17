@@ -48,7 +48,6 @@ app.post('/polls', (req, res) => {
                         // console.log('error creating option');
                     } else {
                         poll.options.push(option);
-                        poll.save();
                         callback();
                     }
                 });
@@ -58,6 +57,7 @@ app.post('/polls', (req, res) => {
                 } else {
                     // send the created poll when all options
                     // are successfully created
+                    poll.save();
                     res.json(poll);
                 }
             });
@@ -67,8 +67,13 @@ app.post('/polls', (req, res) => {
 
 // SHOW route
 app.get('/polls/:id', (req, res) => {
-    const id = req.params.id;
-    console.log(id);
+    Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(poll);
+        }
+    })
 
     /*
     find the poll with the specified id
