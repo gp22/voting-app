@@ -1,14 +1,18 @@
 'use strict';
 
-angular.
-    module('votingApp').
-    config(['$locationProvider', '$routeProvider',
+angular
+    .module('votingApp')
+    .config(['$locationProvider', '$routeProvider',
         function config($locationProvider, $routeProvider) {
 
-            $routeProvider.
+            $routeProvider
                 // NEW route
-                when('/polls/new', {
+                .when('/polls/new', {
                     template: '<new-poll-form></new-poll-form>'
+                })
+
+                .when('/polls/:id', {
+                    template: '<show-poll></show-poll>'
                 })
 
              // use the HTML5 History API

@@ -66,8 +66,8 @@ app.post('/polls', (req, res) => {
     });
 });
 
-// SHOW route
-app.get('/polls/:id', (req, res) => {
+// API for SHOW route
+app.get('/api/polls/:id', (req, res) => {
     Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
         if (err) {
             console.log(err);
@@ -75,11 +75,6 @@ app.get('/polls/:id', (req, res) => {
             res.json(poll);
         }
     })
-
-    /*
-    find the poll with the specified id
-    send the poll data in the response
-    */
 });
 
 // EDIT route
@@ -88,7 +83,7 @@ app.get('/polls/:id', (req, res) => {
 
 // DELETE route
 
-// Route to handle all angular requests
+// Route to handle all other requests
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/app/index.html');
 });
