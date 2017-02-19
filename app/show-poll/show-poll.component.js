@@ -1,9 +1,9 @@
 'use strict';
 
-// Define the `votingAppController` controller on the `votingApp` module
-angular.
-    module('showPoll').
-    component('showPoll', {
+// Define the `showPollController` controller on the `showPoll` module
+angular
+    .module('showPoll')
+    .component('showPoll', {
         templateUrl: '/show-poll/show-poll.template.html',
         controller: function showPollController($routeParams, $http) {
 

@@ -1,8 +1,7 @@
 'use strict';
 
-// Define the votingApp module
+// Define the votingApp module and dependencies
 angular.module('votingApp', [
-    // ...which depends on the newPollForm module
     'ngRoute',
     'newPollForm',
     'showPoll'
