@@ -8,6 +8,7 @@ angular.
         controller: function showPollController($routeParams, $http) {
 
             this.poll = {};
+            this.selection = {};
 
             $http.get(`/api/polls/${$routeParams.id}`).then(res => {
                 this.poll = res.data;

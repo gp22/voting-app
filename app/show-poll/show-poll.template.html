@@ -6,17 +6,19 @@
         </div> -->
         <hr>
         <!-- <h3>Options</h3> -->
-        <div ng-repeat="option in $ctrl.poll.options">
-            <div class="radio">
-                <label>
-                    <input type="checkbox" name="poll" value="score" ng-model="score">
-                    <h2>{{option.name}}</h2>
-                </label>
+        <div class="row">
+            <div class="radio" ng-repeat="option in $ctrl.poll.options">
+                <div class="col-lg-10">
+                    {{option.name}}
+                </div>
+                <div class="col-lg-2">
+                    <label>
+                        <input type="radio" name="poll" value="{{option.name}}" ng-model="$ctrl.selection">
+                    </label>
+                </div>
             </div>
         </div>
-        <div ng-repeat="option in $ctrl.poll.options">
-            {{option}}
-        </div>
+        {{$ctrl.selection}}
 <!--         <div class="form-group">
             <button class="btn btn-primary btn-block" ng-click="$ctrl.addOption()">Add Option</button>
         </div>
