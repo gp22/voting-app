@@ -4,9 +4,8 @@
 angular.
     module('newPollForm').
     component('newPollForm', {
-        templateUrl: 'new-poll-form/new-poll-form.template.html',
+        templateUrl: '/new-poll-form/new-poll-form.template.html',
         controller: function newPollFormController($http) {
-
             this.poll = {
                 name: { name: '' },
                 options: [

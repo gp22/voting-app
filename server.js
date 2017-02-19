@@ -31,58 +31,58 @@ Define RESTful routes
 
 // NEW route
 // app.get('/polls/new', (req, res) => {
-//     res.sendFile('/app/index.html');
+//     res.sendFile('/new');
 // });
 
 // CREATE route
-app.post('/polls', (req, res) => {
-    // console.log(req.body.options);
+// app.post('/polls', (req, res) => {
+//     // console.log(req.body.options);
 
-    // first create the poll
-    Poll.create(req.body.name, (err, poll) => {
-        if (err) {
-            console.log(err);
-        } else {
-            // then use async to individually create each option
-            async.each(req.body.options, (option, callback) => {
-                Option.create(option, (err, option) => {
-                    if (err) {
-                        return callback(err);
-                        // console.log('error creating option');
-                    } else {
-                        poll.options.push(option);
-                        callback();
-                    }
-                });
-            }, (err) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    // send the created poll when all options
-                    // are successfully created
-                    poll.save();
-                    res.json(poll);
-                }
-            });
-        }
-    });
-});
+//     // first create the poll
+//     Poll.create(req.body.name, (err, poll) => {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             // then use async to individually create each option
+//             async.each(req.body.options, (option, callback) => {
+//                 Option.create(option, (err, option) => {
+//                     if (err) {
+//                         return callback(err);
+//                         // console.log('error creating option');
+//                     } else {
+//                         poll.options.push(option);
+//                         callback();
+//                     }
+//                 });
+//             }, (err) => {
+//                 if (err) {
+//                     console.log(err);
+//                 } else {
+//                     // send the created poll when all options
+//                     // are successfully created
+//                     poll.save();
+//                     res.json(poll);
+//                 }
+//             });
+//         }
+//     });
+// });
 
 // SHOW route
-app.get('/polls/:id', (req, res) => {
-    Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(poll);
-        }
-    })
+// app.get('/polls/:id', (req, res) => {
+//     Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.json(poll);
+//         }
+//     })
 
     /*
     find the poll with the specified id
     send the poll data in the response
     */
-});
+// });
 
 // EDIT route
 
@@ -90,10 +90,10 @@ app.get('/polls/:id', (req, res) => {
 
 // DELETE route
 
-// Catch all route for angular requests
-// app.get('*', (req, res) => {
-//     res.sendFile('./app/index.html');
-// });
+// Route to handle all angular requests
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/app/index.html');
+});
 
 /*
 Connect to mongodb and start server
