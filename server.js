@@ -77,16 +77,16 @@ app.get('/api/polls/:id', (req, res) => {
     })
 });
 
-// EDIT route
-// app.get('/polls/:id/edit', (req, res) => {
-
-// });
-
 // UPDATE route
 app.put('/polls/:id', (req, res) => {
     // check if this is a poll update request or a poll submission
     if (req.body.action === 'updatePoll') {
         // update the poll
+
+        /*
+        create the new options and add them to the poll
+        */
+
         console.log(req.body);
     } else {
         // submit the poll

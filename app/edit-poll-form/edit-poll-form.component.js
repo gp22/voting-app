@@ -8,6 +8,7 @@ angular
         controller: function editPollFormController($routeParams, $http) {
 
             const id = $routeParams.id;
+            const toDelete = [];
             this.poll = {};
 
             // Get the poll to edit from the database
@@ -15,7 +16,7 @@ angular
                 this.poll = res.data;
             });
 
-            // // send updated poll data to the EDIT route of server.js
+            // send updated poll data to the EDIT route of server.js
             this.updatePoll = () => {
                 let poll = this.poll;
                 const options = poll.options;
@@ -28,6 +29,13 @@ angular
                 if (length > 2 && poll.options[length-1].name === '') {
                     poll.options.pop();
                 }
+
+                /*
+                send options that are in toDelete to the DELETE route
+
+                remove unchanged options from this.poll.options so they
+                don't get sent to the server
+                */
 
                 // send poll to server.js if no fields were left empty
                 if (poll.name != '' &&
@@ -49,5 +57,20 @@ angular
                     options.push({ name: '', score: 0 });
                 }
             };
+
+            // add option to array of options to delete
+            this.deleteOption = (index) => {
+                // allow options to be deleted if there are more than 2
+                if (this.poll.options.length > 2) {
+                    // if the option is already in the database
+                    // add it to the toDelete array
+                    if (this.poll.options[index].hasOwnProperty('_id')) {
+                        toDelete.push(this.poll.options[index]._id);
+                    }
+                    this.poll.options.splice(index, 1);
+                    console.log(toDelete);
+                    console.log(this.poll);
+                }
+            }
         }
     });
