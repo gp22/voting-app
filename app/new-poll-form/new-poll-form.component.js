@@ -1,9 +1,9 @@
 'use strict';
 
-// Define the `votingAppController` controller on the `votingApp` module
-angular.
-    module('newPollForm').
-    component('newPollForm', {
+// Define the `newPollFormController` controller on the `newPollForm` module
+angular
+    .module('newPollForm')
+    .component('newPollForm', {
         templateUrl: '/new-poll-form/new-poll-form.template.html',
         controller: function newPollFormController($http) {
             this.poll = {
@@ -37,11 +37,6 @@ angular.
                     options[1].name != '') {
                     $http.post('/polls', poll).then(res => {
                         console.log(res.data);
-
-                        /*
-                        create a response with the url for the new poll
-                        format: polls/id
-                        */
                     });
                 }
             };

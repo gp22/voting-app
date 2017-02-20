@@ -1,5 +1,5 @@
 'use strict';
-// This line may be totally unnecessary
+
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
 const Option = require('./models/option');
@@ -66,7 +66,7 @@ app.post('/polls', (req, res) => {
     });
 });
 
-// API for SHOW route
+// API for SHOW and EDIT routes
 app.get('/api/polls/:id', (req, res) => {
     Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
         if (err) {
@@ -77,9 +77,30 @@ app.get('/api/polls/:id', (req, res) => {
     })
 });
 
-// EDIT route
-
 // UPDATE route
+app.put('/polls/:id', (req, res) => {
+    // check if this is a poll update request or a poll submission
+    if (req.body.action === 'updatePoll') {
+        // update the poll
+
+        /*
+        create the new options and add them to the poll
+        */
+
+        console.log(req.body);
+    } else {
+        // submit the poll
+        // get score from request and create new object
+        const score = { score: req.body.score };
+        Option.findByIdAndUpdate(req.params.id, score, { new: true }, (err, option) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(option);
+            }
+        });
+    }
+});
 
 // DELETE route
 
