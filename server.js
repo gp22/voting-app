@@ -80,6 +80,17 @@ app.get('/api/polls/:id', (req, res) => {
 // EDIT route
 
 // UPDATE route
+app.put('/polls/:id', (req, res) => {
+    // get score from request and create new object
+    const score = { score: req.body.score };
+    Option.findByIdAndUpdate(req.params.id, score, { new: true }, (err, option) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(option);
+        }
+    });
+});
 
 // DELETE route
 
