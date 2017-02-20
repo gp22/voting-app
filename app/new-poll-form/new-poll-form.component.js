@@ -21,7 +21,7 @@ angular
             };
 
             // send poll data to server.js
-            this.createPoll = () => {
+            this.updatePoll = () => {
                 const poll = this.poll;
                 const options = poll.options;
                 const length = options.length;
