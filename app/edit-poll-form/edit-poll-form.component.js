@@ -16,7 +16,7 @@ angular
             });
 
             // // send updated poll data to the EDIT route of server.js
-            this.createPoll = () => {
+            this.updatePoll = () => {
                 let poll = this.poll;
                 const options = poll.options;
                 const length = options.length;
