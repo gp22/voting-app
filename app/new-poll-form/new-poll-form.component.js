@@ -37,11 +37,6 @@ angular
                     options[1].name != '') {
                     $http.post('/polls', poll).then(res => {
                         console.log(res.data);
-
-                        /*
-                        create a response with the url for the new poll
-                        format: polls/id
-                        */
                     });
                 }
             };

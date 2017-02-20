@@ -1,5 +1,5 @@
 'use strict';
-// This line may be totally unnecessary
+
 // const routes = require('./app/routes/index.js');
 const bodyParser = require('body-parser');
 const Option = require('./models/option');
@@ -66,7 +66,7 @@ app.post('/polls', (req, res) => {
     });
 });
 
-// API for SHOW route
+// API for SHOW and EDIT routes
 app.get('/api/polls/:id', (req, res) => {
     Poll.findById(req.params.id).populate('options').exec(function(err, poll) {
         if (err) {
@@ -78,6 +78,9 @@ app.get('/api/polls/:id', (req, res) => {
 });
 
 // EDIT route
+// app.get('/polls/:id/edit', (req, res) => {
+
+// });
 
 // UPDATE route
 app.put('/polls/:id', (req, res) => {
