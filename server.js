@@ -84,15 +84,22 @@ app.get('/api/polls/:id', (req, res) => {
 
 // UPDATE route
 app.put('/polls/:id', (req, res) => {
-    // get score from request and create new object
-    const score = { score: req.body.score };
-    Option.findByIdAndUpdate(req.params.id, score, { new: true }, (err, option) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(option);
-        }
-    });
+    // check if this is a poll update request or a poll submission
+    if (req.body.action === 'updatePoll') {
+        // update the poll
+        console.log(req.body);
+    } else {
+        // submit the poll
+        // get score from request and create new object
+        const score = { score: req.body.score };
+        Option.findByIdAndUpdate(req.params.id, score, { new: true }, (err, option) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(option);
+            }
+        });
+    }
 });
 
 // DELETE route
