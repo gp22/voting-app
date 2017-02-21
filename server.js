@@ -100,7 +100,6 @@ app.put('/polls/:id', (req, res) => {
                 console.log(err);
             } else {
                 // then use async to create each new option
-                // console.log(poll);
                 async.series([
                     function(callback) {
                         async.each(optionsToCreate, (option, callback) => {
@@ -111,7 +110,6 @@ app.put('/polls/:id', (req, res) => {
                                     // and add it to the poll
                                     poll.options.push(option);
                                     callback();
-                                    poll.save();
                                 }
                             });
                         });
@@ -128,6 +126,13 @@ app.put('/polls/:id', (req, res) => {
                                     callback();
                                 }
                             });
+                        }, (err) => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                // save the poll once all updates are done
+                                poll.save();
+                            }
                         });
                         callback(null);
                     }
@@ -138,7 +143,7 @@ app.put('/polls/:id', (req, res) => {
                     } else {
                         // send the created poll when all options
                         // are successfully created
-                        res.json(poll);
+                        res.send(result);
                     }
                 });
             }

@@ -5,7 +5,7 @@ angular
     .module('editPollForm')
     .component('editPollForm', {
         templateUrl: '/edit-poll-form/edit-poll-form.template.html',
-        controller: function editPollFormController($routeParams, $http) {
+        controller: function editPollFormController($routeParams, $http, $location) {
 
             const id = $routeParams.id;
             const toDelete = [];
@@ -32,14 +32,11 @@ angular
 
                 // send options that are in toDelete to the DELETE route
 
-                // remove unchanged options from this.poll.options so they
-                // don't get sent to the server
-
                 // send updated poll to server.js if no fields were left empty
                 if (options[0].name != '' &&
                     options[1].name != '') {
                     $http.put(`/polls/${id}`, poll).then(res => {
-                        console.log(res.data);
+                        $location.url(`/polls/${id}`);
                     });
                 }
             };
