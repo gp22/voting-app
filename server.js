@@ -81,13 +81,68 @@ app.get('/api/polls/:id', (req, res) => {
 app.put('/polls/:id', (req, res) => {
     // check if this is a poll update request or a poll submission
     if (req.body.action === 'updatePoll') {
-        // update the poll
+        // separate options to update and options to create
+        let optionsToUpdate = [];
+        let optionsToCreate = [];
+        req.body.options.forEach(option => {
+            // if option alread has an id, it gets updated
+            if (option.hasOwnProperty('_id')) {
+                optionsToUpdate.push(option);
+            } else {
+                // otherwise it needs to be created
+                optionsToCreate.push(option);
+            }
+        });
 
-        /*
-        create the new options and add them to the poll
-        */
-
-        console.log(req.body);
+        // then use async to create each new option and add it to the poll
+        Poll.findById(req.body._id, (err, poll) => {
+            if (err) {
+                console.log(err);
+            } else {
+                // then use async to create each new option
+                // console.log(poll);
+                async.series([
+                    function(callback) {
+                        async.each(optionsToCreate, (option, callback) => {
+                            Option.create(option, (err, option) => {
+                                if (err) {
+                                    return callback(err);
+                                } else {
+                                    // and add it to the poll
+                                    poll.options.push(option);
+                                    callback();
+                                    poll.save();
+                                }
+                            });
+                        });
+                        callback(null);
+                    },
+                    function(callback) {
+                        // and update the existing options
+                        async.each(optionsToUpdate, (option, callback) => {
+                            const name = { name: option.name };
+                            Option.findByIdAndUpdate(option._id, name, { new: true }, (err, option) => {
+                                if (err) {
+                                    return callback(err);
+                                } else {
+                                    callback();
+                                }
+                            });
+                        });
+                        callback(null);
+                    }
+                ],
+                (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        // send the created poll when all options
+                        // are successfully created
+                        res.json(poll);
+                    }
+                });
+            }
+        });
     } else {
         // submit the poll
         // get score from request and create new object

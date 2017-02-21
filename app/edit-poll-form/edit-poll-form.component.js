@@ -30,16 +30,13 @@ angular
                     poll.options.pop();
                 }
 
-                /*
-                send options that are in toDelete to the DELETE route
+                // send options that are in toDelete to the DELETE route
 
-                remove unchanged options from this.poll.options so they
-                don't get sent to the server
-                */
+                // remove unchanged options from this.poll.options so they
+                // don't get sent to the server
 
-                // send poll to server.js if no fields were left empty
-                if (poll.name != '' &&
-                    options[0].name != '' &&
+                // send updated poll to server.js if no fields were left empty
+                if (options[0].name != '' &&
                     options[1].name != '') {
                     $http.put(`/polls/${id}`, poll).then(res => {
                         console.log(res.data);
