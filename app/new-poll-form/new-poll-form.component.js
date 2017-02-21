@@ -5,7 +5,7 @@ angular
     .module('newPollForm')
     .component('newPollForm', {
         templateUrl: '/new-poll-form/new-poll-form.template.html',
-        controller: function newPollFormController($http) {
+        controller: function newPollFormController($http, $location) {
             this.poll = {
                 name: { name: '' },
                 options: [
@@ -36,7 +36,8 @@ angular
                     options[0].name != '' &&
                     options[1].name != '') {
                     $http.post('/polls', poll).then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
+                        $location.url(`/polls/${res.data._id}`);
                     });
                 }
             };
