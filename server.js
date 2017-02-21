@@ -162,7 +162,12 @@ app.put('/polls/:id', (req, res) => {
     }
 });
 
-// DELETE route
+// DELETE route for options
+app.delete('/options/:id', (req, res) => {
+    console.log(req.params.id);
+});
+
+// DELETE route for polls
 
 // Route to handle all other requests
 app.get('*', (req, res) => {

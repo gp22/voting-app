@@ -31,12 +31,18 @@ angular
                 }
 
                 // send options that are in toDelete to the DELETE route
+                toDelete.forEach(option => {
+                    $http.delete(`/options/${option._id}`, option).then(res => {
+                        console.log(res.data);
+                    });
+                });
 
                 // send updated poll to server.js if no fields were left empty
                 if (options[0].name != '' &&
                     options[1].name != '') {
                     $http.put(`/polls/${id}`, poll).then(res => {
-                        $location.url(`/polls/${id}`);
+                        // $location.url(`/polls/${id}`);
+                        console.log(res.data);
                     });
                 }
             };
