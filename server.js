@@ -103,19 +103,21 @@ app.put('/polls/:id', (req, res) => {
                 // then use async to delete options
                 async.series([
                     function(callback) {
-                        async.each(optionsToDelete, (option, callback) => {
-                            Option.findByIdAndRemove(option, (err, optionToDelete) => {
-                                if (err) {
-                                    return callback(err);
-                                } else {
-                                    // remove option from poll.options
-                                    const index = poll.options.indexOf(optionToDelete._id);
-                                    poll.options.splice(index, 1);
-                                    callback();
-                                }
+                        if (optionsToDelete.length != 0) {
+                            async.each(optionsToDelete, (option, callback) => {
+                                Option.findByIdAndRemove(option, (err, optionToDelete) => {
+                                    if (err) {
+                                        return callback(err);
+                                    } else {
+                                        // remove option from poll.options
+                                        const index = poll.options.indexOf(optionToDelete._id);
+                                        poll.options.splice(index, 1);
+                                        callback();
+                                    }
+                                });
                             });
-                        });
-                        callback(null);
+                            callback(null);
+                        }
                     },
                     function(callback) {
                         // create each new option
