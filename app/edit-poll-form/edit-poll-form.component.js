@@ -8,12 +8,12 @@ angular
         controller: function editPollFormController($routeParams, $http, $location) {
 
             const id = $routeParams.id;
-            const toDelete = [];
             this.poll = {};
 
             // Get the poll to edit from the database
             $http.get(`/api/polls/${id}`).then(res => {
                 this.poll = res.data;
+                this.poll.toDelete = [];
             });
 
             // send updated poll data to the EDIT route of server.js
@@ -30,19 +30,11 @@ angular
                     poll.options.pop();
                 }
 
-                // send options that are in toDelete to the DELETE route
-                toDelete.forEach(option => {
-                    $http.delete(`/options/${option._id}`, option).then(res => {
-                        console.log(res.data);
-                    });
-                });
-
                 // send updated poll to server.js if no fields were left empty
                 if (options[0].name != '' &&
                     options[1].name != '') {
                     $http.put(`/polls/${id}`, poll).then(res => {
-                        // $location.url(`/polls/${id}`);
-                        console.log(res.data);
+                        $location.url(`/polls/${id}`);
                     });
                 }
             };
@@ -65,11 +57,11 @@ angular
                     // if the option is already in the database
                     // add it to the toDelete array
                     if (this.poll.options[index].hasOwnProperty('_id')) {
-                        toDelete.push(this.poll.options[index]._id);
+                        this.poll.toDelete.push(this.poll.options[index]._id);
                     }
                     this.poll.options.splice(index, 1);
-                    console.log(toDelete);
-                    console.log(this.poll);
+                    // console.log(this.poll.toDelete);
+                    // console.log(this.poll);
                 }
             }
         }
