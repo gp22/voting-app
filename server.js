@@ -182,15 +182,15 @@ app.put('/polls/:id', (req, res) => {
 });
 
 // DELETE route
-app.delete('/poll/:id', (req, res) => {
-    // const id = req.params.id;
-    // Poll.findByIdAndRemove(id, (err, poll) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.json(poll);
-    //     }
-    // });
+app.delete('/polls/:id', (req, res) => {
+    const id = req.params.id;
+    Poll.findByIdAndRemove(id, (err, poll) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(poll);
+        }
+    });
 });
 
 // Route to handle all other requests

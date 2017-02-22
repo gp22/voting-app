@@ -63,6 +63,13 @@ angular
                     // console.log(this.poll.toDelete);
                     // console.log(this.poll);
                 }
-            }
+            };
+
+            // delete the entire poll
+            this.deletePoll = () => {
+                $http.delete(`/polls/${id}`).then(res => {
+                    $location.url('/');
+                });
+            };
         }
     });
