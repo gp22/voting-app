@@ -84,6 +84,7 @@ app.put('/polls/:id', (req, res) => {
         // separate options to update and options to create
         let optionsToUpdate = [];
         let optionsToCreate = [];
+        let optionsToDelete = req.body.toDelete;
         req.body.options.forEach(option => {
             // if option alread has an id, it gets updated
             if (option.hasOwnProperty('_id')) {
@@ -99,9 +100,25 @@ app.put('/polls/:id', (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                // then use async to create each new option
+                // then use async to delete options
                 async.series([
                     function(callback) {
+                        async.each(optionsToDelete, (option, callback) => {
+                            Option.findByIdAndRemove(option, (err, optionToDelete) => {
+                                if (err) {
+                                    return callback(err);
+                                } else {
+                                    // remove option from poll.options
+                                    const index = poll.options.indexOf(optionToDelete._id);
+                                    poll.options.splice(index, 1);
+                                    callback();
+                                }
+                            });
+                        });
+                        callback(null);
+                    },
+                    function(callback) {
+                        // create each new option
                         async.each(optionsToCreate, (option, callback) => {
                             Option.create(option, (err, option) => {
                                 if (err) {
@@ -143,7 +160,7 @@ app.put('/polls/:id', (req, res) => {
                     } else {
                         // send the created poll when all options
                         // are successfully created
-                        res.send(result);
+                        res.send(poll);
                     }
                 });
             }
@@ -163,11 +180,11 @@ app.put('/polls/:id', (req, res) => {
 });
 
 // DELETE route for options
-app.delete('/options/:id', (req, res) => {
-    console.log(req.params.id);
-});
+// app.delete('/options/:id', (req, res) => {
+//     console.log(req.params.id);
+// });
 
-// DELETE route for polls
+// DELETE route
 
 // Route to handle all other requests
 app.get('*', (req, res) => {
