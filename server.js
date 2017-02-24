@@ -41,6 +41,11 @@ app.post('/polls', (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            // add client id to each option
+            req.body.options.forEach(option => {
+                option.poll_id = poll._id;
+                console.log(option);
+            });
             // then use async to individually create each option
             async.each(req.body.options, (option, callback) => {
                 Option.create(option, (err, option) => {
