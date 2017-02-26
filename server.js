@@ -27,7 +27,16 @@ app.use(bodyParser.json());
 Define RESTful routes
 */
 
-// INDEX route
+// API for INDEX route
+app.get('/api/polls', (req, res) => {
+    Poll.find({}, (err, polls) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(polls);
+        }
+    })
+});
 
 // NEW route
 app.get('/polls/new', (req, res) => {

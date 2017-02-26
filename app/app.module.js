@@ -5,5 +5,6 @@ angular.module('votingApp', [
     'ngRoute',
     'newPollForm',
     'showPoll',
+    'showPolls',
     'editPollForm'
 ]);
