@@ -27,7 +27,16 @@ app.use(bodyParser.json());
 Define RESTful routes
 */
 
-// INDEX route
+// API for INDEX route
+app.get('/api/polls', (req, res) => {
+    Poll.find({}, (err, polls) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(polls);
+        }
+    })
+});
 
 // NEW route
 app.get('/polls/new', (req, res) => {
@@ -41,6 +50,11 @@ app.post('/polls', (req, res) => {
         if (err) {
             console.log(err);
         } else {
+            // add client id to each option
+            req.body.options.forEach(option => {
+                option.poll_id = poll._id;
+                console.log(option);
+            });
             // then use async to individually create each option
             async.each(req.body.options, (option, callback) => {
                 Option.create(option, (err, option) => {

@@ -6,6 +6,11 @@ angular
         function config($locationProvider, $routeProvider) {
 
             $routeProvider
+                // INDEX route
+                .when('/polls', {
+                    template: '<show-polls></show-polls>'
+                })
+
                 // NEW route
                 .when('/polls/new', {
                     template: '<new-poll-form></new-poll-form>'
