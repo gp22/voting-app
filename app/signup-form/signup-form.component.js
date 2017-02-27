@@ -1,11 +1,11 @@
 'use strict';
 
-// Define the `newPollFormController` controller on the `newPollForm` module
+// Define the `signupFormController` controller on the `signupForm` module
 angular
-    .module('newPollForm')
-    .component('newPollForm', {
-        templateUrl: '/new-poll-form/new-poll-form.template.html',
-        controller: function newPollFormController($http, $location) {
+    .module('signupForm')
+    .component('signupForm', {
+        templateUrl: '/signup-form/signup-form.template.html',
+        controller: function signupFormController($http, $location) {
             this.poll = {
                 name: { name: '' },
                 options: [

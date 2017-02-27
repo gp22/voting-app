@@ -7,5 +7,6 @@ angular.module('votingApp', [
     'showPoll',
     'showPolls',
     'editPollForm',
-    'loginForm'
+    'loginForm',
+    'signupForm'
 ]);
