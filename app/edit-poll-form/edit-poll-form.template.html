@@ -6,7 +6,7 @@
         <div class="well">
         <h3>Options</h3>
             <div ng-repeat="option in $ctrl.poll.options">
-                <div class="input-group input-group-lg">
+                <div class="form-group input-group input-group">
                     <input class="form-control" type="text" placeholder="Option" ng-model="option.name">
                     <span class="input-group-btn">
                         <button class="btn btn-danger" ng-click="$ctrl.deleteOption($index)">Delete</button>
