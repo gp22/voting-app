@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row col-lg-6 col-lg-offset-3 text-center">
         <h1>All Polls</h1>
-        <hr>
         <div class="row well list-group">
             <div ng-repeat="poll in $ctrl.polls">
                 <a href="/polls/{{poll._id}}" class="list-group-item"><h4>{{poll.name}}</h4></a>
