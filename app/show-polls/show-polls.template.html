@@ -2,15 +2,8 @@
     <div class="row col-lg-6 col-lg-offset-3 text-center">
         <h1>All Polls</h1>
         <hr>
-        <div class="row">
-            <div ng-repeat="poll in $ctrl.polls">
-                <div class="form-group col-xs-10">
-                    {{poll.name}}
-                </div>
-                <div class="form-group col-xs-2">
-                    <button class="btn btn-success" ng-click="$ctrl.submitPoll()">View Poll</button>
-                </div>
-            </div>
+        <div class="row well list-group">
+            <a href="#" class="list-group-item" ng-repeat="poll in $ctrl.polls"><h4>{{poll.name}}</h4></a>
         </div>
     </div>
 </div>
