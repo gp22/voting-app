@@ -1,0 +1,41 @@
+'use strict';
+
+// Define the `signupFormController` controller on the `signupForm` module
+angular
+    .module('signupForm')
+    .component('signupForm', {
+        templateUrl: '/signup-form/signup-form.template.html',
+        controller: function signupFormController($http, $location) {
+            this.user = {
+                username: '',
+                email: '',
+                password: ''
+            };
+
+            // send user data to server.js
+            this.addUser = () => {
+                const user = this.user;
+
+                // send user to server.js if no fields were left empty
+                if (user.username != '' &&
+                    user.email != '' &&
+                    user.password != '') {
+                    $http.post('/polls', poll).then(res => {
+                        // console.log(res.data);
+                        $location.url(`/polls/${res.data._id}`);
+                    });
+                }
+            };
+
+            // add another option input field to poll creation form
+            this.addOption = () => {
+                // const options = this.poll.options;
+                // const length = options.length;
+
+                // // add an option if the last object in the array is not empty
+                // if (options[length-1].name !== '') {
+                //     options.push({ name: '', score: 0 });
+                // }
+            };
+        }
+    });

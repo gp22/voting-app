@@ -1,21 +1,22 @@
 <div class="container">
-    <div class="row col-lg-6 col-lg-offset-3 text-center">
-        <h1>{{$ctrl.poll.name}}</h1>
-        <hr>
-        <div class="row">
-            <div class="radio" ng-repeat="option in $ctrl.poll.options">
-                <div class="form-group col-xs-10">
-                    {{option.name}}
-                </div>
-                <div class="form-group col-xs-2">
-                    <label>
-                        <input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
-                    </label>
+    <div class="row col-lg-6 col-lg-offset-3">
+        <h1 class="text-center">{{$ctrl.poll.name}}</h1>
+        <div class="well">
+            <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options">
+                <div class="panel-body">
+                    <div class="col-xs-11">
+                        <h4>{{option.name}}</h4>
+                    </div>
+                    <div class="col-xs-1">
+                        <label>
+                            <h4><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection"></h4>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success" ng-click="$ctrl.submitPoll()">Submit Poll</button>
+            <div class="form-group text-center">
+                <button class="btn btn-success" ng-click="$ctrl.submitPoll()">Submit Poll</button>
+            </div>
         </div>
     </div>
 </div>

@@ -1,11 +1,13 @@
 'use strict';
 
 // const routes = require('./app/routes/index.js');
+const localStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const Option = require('./models/option');
 const Poll = require('./models/poll');
 const User = require('./models/user');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const express = require('express');
 const async = require('async');
 const app = express();
@@ -22,6 +24,20 @@ const port = (process.env.PORT) ? process.env.PORT : 3000;
 
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
+
+/*
+Configure Passport
+*/
+app.use(require('express-session')({
+    secret: 'gold trianlge white cloud green palm tree',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 /*
 Define RESTful routes
