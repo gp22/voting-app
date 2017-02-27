@@ -3,7 +3,9 @@
         <h1>All Polls</h1>
         <hr>
         <div class="row well list-group">
-            <a href="#" class="list-group-item" ng-repeat="poll in $ctrl.polls"><h4>{{poll.name}}</h4></a>
+            <div ng-repeat="poll in $ctrl.polls">
+                <a href="/polls/{{poll._id}}" class="list-group-item"><h4>{{poll.name}}</h4></a>
+            </div>
         </div>
     </div>
 </div>
