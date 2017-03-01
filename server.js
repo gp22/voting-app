@@ -241,8 +241,23 @@ app.post('/api/signup', (req,res) => {
     });
 });
 
-// handle logins
-
+// handle logins, code help from:
+// https://www.sitepoint.com/user-authentication-mean-stack/
+app.post('/api/login', (req, res) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            res.status(404).json(err);
+            return;
+        }
+        // if a user is found
+        if (user) {
+            res.status(200).send('user found');
+        } else {
+            // if user is not found
+            res.status(401).json(info);
+        }
+    })(req, res);
+});
 
 // Route to handle all other requests
 app.get('*', (req, res) => {
