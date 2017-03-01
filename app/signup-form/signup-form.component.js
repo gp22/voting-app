@@ -20,9 +20,11 @@ angular
                 if (user.username != '' &&
                     user.email != '' &&
                     user.password != '') {
-                    $http.post('/polls', poll).then(res => {
+                    $http.post('/api/signup', user).then(res => {
                         // console.log(res.data);
-                        $location.url(`/polls/${res.data._id}`);
+                        $location.url('/');
+                    }, res => {
+                        $location.url('/polls');
                     });
                 }
             };

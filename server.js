@@ -1,7 +1,7 @@
 'use strict';
 
 // const routes = require('./app/routes/index.js');
-const localStrategy = require('passport-local');
+const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const Option = require('./models/option');
 const Poll = require('./models/poll');
@@ -35,7 +35,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new localStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -222,6 +222,27 @@ app.delete('/polls/:id', (req, res) => {
         }
     });
 });
+
+/*
+Auth routes
+*/
+
+// handle signups
+app.post('/api/signup', (req,res) => {
+    const newUser = new User({ username: req.body.username });
+    User.register(newUser, req.body.password, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.status(403).send(err);
+        }
+        passport.authenticate('local')(req, res, () => {
+            res.status(201).send('user created');
+        });
+    });
+});
+
+// handle logins
+
 
 // Route to handle all other requests
 app.get('*', (req, res) => {

@@ -6,14 +6,7 @@ Define schema and model for users
 */
 const userSchema = new mongoose.Schema({
     username: String,
-    email: String,
-    password: String,
-    polls: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Poll'
-        }
-    ]
+    password: String
 });
 
 userSchema.plugin(passportLocalMongoose);
