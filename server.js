@@ -259,6 +259,12 @@ app.post('/api/login', (req, res) => {
     })(req, res);
 });
 
+// logout route
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.status(200).send('Logged out');
+});
+
 // Route to handle all other requests
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/app/index.html');
