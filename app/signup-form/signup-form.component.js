@@ -21,7 +21,7 @@ angular
                     user.email != '' &&
                     user.password != '') {
                     $http.post('/api/signup', user).then(res => {
-                        // console.log(res.data);
+                        console.log(res.data);
                         $location.url('/');
                     }, res => {
                         $location.url('/polls');

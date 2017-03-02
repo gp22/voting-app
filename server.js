@@ -236,7 +236,8 @@ app.post('/api/signup', (req,res) => {
             return res.status(403).send(err);
         }
         passport.authenticate('local')(req, res, () => {
-            res.status(201).send('user created');
+            const token = user.generateJwt();
+            res.status(201).json({ "token": token });
         });
     });
 });

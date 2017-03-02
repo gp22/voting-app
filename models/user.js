@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
+// generate the JSON webtoken to send in the response
 userSchema.methods.generateJwt = () => {
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
