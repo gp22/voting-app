@@ -9,4 +9,5 @@ angular.module('votingApp', [
     'editPollForm',
     'loginForm',
     'signupForm'
+    // 'authentication'
 ]);
