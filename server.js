@@ -236,6 +236,7 @@ app.post('/api/signup', (req,res) => {
             return res.status(403).send(err);
         }
         passport.authenticate('local')(req, res, () => {
+            // generate the JSON web token and send it in the response
             const token = user.generateJwt();
             res.status(201).json({ "token": token });
         });
@@ -252,7 +253,9 @@ app.post('/api/login', (req, res) => {
         }
         // if a user is found
         if (user) {
-            res.status(200).send('user found');
+            // generate the JSON web token and send it in the response
+            const token = user.generateJwt();
+            res.status(200).json({ "token": token });
         } else {
             // if user is not found
             res.status(401).json(info);

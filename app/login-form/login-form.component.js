@@ -19,7 +19,7 @@ angular
                 if (user.username != '' &&
                     user.password != '') {
                     $http.post('/api/login', user).then(res => {
-                        console.log(res.data);
+                        // console.log(res.data);
                         $location.url('/');
                     }, res => {
                         $location.url('/polls');
