@@ -36,6 +36,18 @@
             }
         };
 
+        const currentUser = function () {
+            if(isLoggedIn()){
+                const token = getToken();
+                let payload = token.split('.')[1];
+                payload = $window.atob(payload);
+                payload = JSON.parse(payload);
+                return {
+                    username: payload.username
+                };
+            }
+        };
+
         return {
             saveToken: saveToken,
             getToken: getToken,

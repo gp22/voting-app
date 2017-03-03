@@ -5,7 +5,7 @@ angular
     .module('loginForm')
     .component('loginForm', {
         templateUrl: '/login-form/login-form.template.html',
-        controller: function loginFormController($http, $location) {
+        controller: function loginFormController($http, $window, $location) {
             this.user = {
                 username: '',
                 password: ''
@@ -19,23 +19,13 @@ angular
                 if (user.username != '' &&
                     user.password != '') {
                     $http.post('/api/login', user).then(res => {
-                        // console.log(res.data);
+                        // console.log(res.data.token);
+                        $window.sessionStorage.token = res.data.token;
                         $location.url('/');
                     }, res => {
                         $location.url('/polls');
                     });
                 }
             };
-
-            // add another option input field to poll creation form
-            // this.addOption = () => {
-            //     const options = this.poll.options;
-            //     const length = options.length;
-
-            //     // add an option if the last object in the array is not empty
-            //     if (options[length-1].name !== '') {
-            //         options.push({ name: '', score: 0 });
-            //     }
-            // };
         }
     });
