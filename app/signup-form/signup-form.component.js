@@ -5,7 +5,7 @@ angular
     .module('signupForm')
     .component('signupForm', {
         templateUrl: '/signup-form/signup-form.template.html',
-        controller: function signupFormController($http, $location) {
+        controller: function signupFormController($http, $window, $location) {
             this.user = {
                 username: '',
                 email: '',
@@ -20,9 +20,12 @@ angular
                 if (user.username != '' &&
                     user.email != '' &&
                     user.password != '') {
-                    $http.post('/polls', poll).then(res => {
+                    $http.post('/api/signup', user).then(res => {
                         // console.log(res.data);
-                        $location.url(`/polls/${res.data._id}`);
+                        $window.localStorage.token = res.data.token;
+                        $location.url('/');
+                    }, res => {
+                        $location.url('/polls');
                     });
                 }
             };

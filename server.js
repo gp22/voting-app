@@ -1,7 +1,7 @@
 'use strict';
 
 // const routes = require('./app/routes/index.js');
-const localStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const Option = require('./models/option');
 const Poll = require('./models/poll');
@@ -35,9 +35,23 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+// passport local strategy, code help from:
+// https://thinkster.io/tutorials/mean-stack/setting-up-passport
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({ username: username }, { username: 1, salt: 1, hash: 1 }, function(err, user) {
+            if (err) { return done(err); }
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username' });
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, { message: 'Incorrect password' });
+            }
+            return done(null, user);
+        });
+    }
+));
 
 /*
 Define RESTful routes
@@ -221,6 +235,58 @@ app.delete('/polls/:id', (req, res) => {
             res.json(poll);
         }
     });
+});
+
+/*
+Auth routes
+*/
+
+// handle signups, code help from:
+// https://thinkster.io/tutorials/mean-stack/securing-endpoints-with-jwt-authentication
+app.post('/api/signup', function(req, res, next) {
+    if(!req.body.username || !req.body.password) {
+        return res.status(400).json({ message: 'Please fill out all fields'});
+    }
+
+    let user = new User();
+    user.username = req.body.username;
+    user.setPassword(req.body.password);
+
+    user.save(function(err) {
+        if (err) {
+            return next(err);
+        }
+        // generate the JSON web token and send it in the response
+        const token = user.generateJwt();
+        return res.status(201).json({ "token": token });
+    });
+});
+
+// handle logins, code help from:
+// https://thinkster.io/tutorials/mean-stack/securing-endpoints-with-jwt-authentication
+app.post('/api/login', function(req, res, next) {
+    if(!req.body.username || !req.body.password) {
+        return res.status(400).json({ message: 'Please fill out all fields'});
+    }
+
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (user) {
+            // generate the JSON web token and send it in the response
+            const token = user.generateJwt();
+            return res.status(200).json({ "token": token });
+        } else {
+            return res.status(401).json(info);
+        }
+    })(req, res, next);
+});
+
+// logout route
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.status(200).send('Logged out');
 });
 
 // Route to handle all other requests
