@@ -12,7 +12,7 @@ angular
             // Get the poll to show from the database
             $http.get('/api/polls').then(res => {
                 this.polls = res.data;
-                console.log(this.polls);
+                // console.log(this.polls);
             });
 
             // Increment score value on the selected poll option

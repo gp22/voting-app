@@ -39,16 +39,17 @@
 
 </head>
 
-<body ng-app="votingApp" ng-controller="mainCtrl">
+<body ng-app="votingApp" ng-controller="mainCtrl as main">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">Voting App</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/signup">Signup</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li ng-hide="main.isLoggedIn()"><a href="/signup">Signup</a></li>
+                <li ng-hide="main.isLoggedIn()"><a href="/login">Login</a></li>
+                <li ng-show="main.isLoggedIn()"><a href="/users/">My Polls</a></li>
+                <li ng-show="main.isLoggedIn()"><a href="#" ng-click="main.logout()">Logout</a></li>
             </ul>
         </div>
     </nav>

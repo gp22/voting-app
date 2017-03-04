@@ -6,6 +6,7 @@ angular
 
     .factory('Auth', function($window) {
 
+        // check if user is logged in and token is not expired
         const isLoggedIn = function() {
             const token = $window.localStorage.token;
             let payload;
@@ -21,7 +22,8 @@ angular
             }
         };
 
-        const currentUser = function () {
+        // get the name of the current user
+        const currentUser = function() {
             if(isLoggedIn()){
                 const token = $window.localStorage.token;
                 let payload = token.split('.')[1];
@@ -33,26 +35,17 @@ angular
             }
         };
 
+        // log user out by deleting token from local storage
+        const logout = function() {
+            $window.localStorage.removeItem('token');
+        };
+
         return {
             isLoggedIn: isLoggedIn,
-            currentUser: currentUser
+            currentUser: currentUser,
+            logout: logout
         };
     });
-
-    // .factory('AuthUser', function($window) {
-    //     let authUserFactory = {};
-
-    //     authUserFactory.currentUser = function() {
-    //         const token = $window.sessionStorage.token;
-    //         let payload = token.split('.')[1];
-    //         payload = $window.atob(payload);
-    //         payload = JSON.parse(payload);
-    //         return {
-    //             username: payload.username
-    //         };
-    //     }
-    //     return authUserFactory;
-    // });
 
     // .service('auth', auth);
 
