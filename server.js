@@ -35,14 +35,12 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-// passport local strategy from web dev bootcamp
-// passport.use(new LocalStrategy(User.authenticate()));
 
 // passport local strategy, code help from:
 // https://thinkster.io/tutorials/mean-stack/setting-up-passport
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        User.findOne({ username: username }, { salt: 1, hash: 1 }, function(err, user) {
+        User.findOne({ username: username }, { username: 1, salt: 1, hash: 1 }, function(err, user) {
             if (err) { return done(err); }
             if (!user) {
                 return done(null, false, { message: 'Incorrect username' });
@@ -54,9 +52,6 @@ passport.use(new LocalStrategy(
         });
     }
 ));
-
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 /*
 Define RESTful routes
@@ -287,42 +282,6 @@ app.post('/api/login', function(req, res, next) {
         }
     })(req, res, next);
 });
-
-// handle signups
-// app.post('/api/signup', (req,res) => {
-//     const newUser = new User({ username: req.body.username });
-//     User.register(newUser, req.body.password, (err, user) => {
-//         if (err) {
-//             console.log(err);
-//             return res.status(403).send(err);
-//         }
-//         passport.authenticate('local')(req, res, () => {
-//             // generate the JSON web token and send it in the response
-//             const token = user.generateJwt();
-//             res.status(201).json({ "token": token });
-//         });
-//     });
-// });
-
-// handle logins, code help from:
-// https://www.sitepoint.com/user-authentication-mean-stack/
-// app.post('/api/login', (req, res) => {
-//     passport.authenticate('local', (err, user, info) => {
-//         if (err) {
-//             res.status(404).json(err);
-//             return;
-//         }
-//         // if a user is found
-//         if (user) {
-//             // generate the JSON web token and send it in the response
-//             const token = user.generateJwt();
-//             res.status(200).json({ "token": token });
-//         } else {
-//             // if user is not found
-//             res.status(401).json(info);
-//         }
-//     })(req, res);
-// });
 
 // logout route
 app.get('/logout', (req, res) => {
