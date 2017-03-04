@@ -22,7 +22,7 @@ angular
                     user.password != '') {
                     $http.post('/api/signup', user).then(res => {
                         // console.log(res.data);
-                        $window.sessionStorage.token = res.data.token;
+                        $window.localStorage.token = res.data.token;
                         $location.url('/');
                     }, res => {
                         $location.url('/polls');

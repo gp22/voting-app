@@ -5,10 +5,9 @@ angular
     .module('authServices', [])
 
     .factory('Auth', function($window) {
-        let authFactory = {};
 
-        authFactory.isLoggedIn = function() {
-            const token = $window.sessionStorage.token;
+        const isLoggedIn = function() {
+            const token = $window.localStorage.token;
             let payload;
 
             if (token) {
@@ -20,24 +19,41 @@ angular
             } else {
                 return false;
             }
-        }
-        return authFactory;
-    })
+        };
 
-    .factory('AuthUser', function($window) {
-        let authUserFactory = {};
+        const currentUser = function () {
+            if(isLoggedIn()){
+                const token = $window.localStorage.token;
+                let payload = token.split('.')[1];
+                payload = $window.atob(payload);
+                payload = JSON.parse(payload);
+                return {
+                    username: payload.username
+                };
+            }
+        };
 
-        authUserFactory.currentUser = function() {
-            const token = $window.sessionStorage.token;
-            let payload = token.split('.')[1];
-            payload = $window.atob(payload);
-            payload = JSON.parse(payload);
-            return {
-                username: payload.username
-            };
-        }
-        return authUserFactory;
+        return {
+            isLoggedIn: isLoggedIn,
+            currentUser: currentUser
+        };
     });
+
+    // .factory('AuthUser', function($window) {
+    //     let authUserFactory = {};
+
+    //     authUserFactory.currentUser = function() {
+    //         const token = $window.sessionStorage.token;
+    //         let payload = token.split('.')[1];
+    //         payload = $window.atob(payload);
+    //         payload = JSON.parse(payload);
+    //         return {
+    //             username: payload.username
+    //         };
+    //     }
+    //     return authUserFactory;
+    // });
+
     // .service('auth', auth);
 
     // auth.$inject = ['$http', '$window'];
