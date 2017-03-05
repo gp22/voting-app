@@ -5,6 +5,7 @@ Define schema and model for polls
 */
 const pollSchema = new mongoose.Schema({
     name: String,
+    username: String,
     options: [
         {
             type: mongoose.Schema.Types.ObjectId,

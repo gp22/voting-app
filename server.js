@@ -76,14 +76,15 @@ app.get('/polls/new', (req, res) => {
 // CREATE route
 app.post('/polls', (req, res) => {
     // first create the poll
-    Poll.create(req.body.name, (err, poll) => {
+    const name = req.body.name;
+    const username = req.body.username;
+    Poll.create({ name: name, username: username }, (err, poll) => {
         if (err) {
             console.log(err);
         } else {
             // add client id to each option
             req.body.options.forEach(option => {
                 option.poll_id = poll._id;
-                console.log(option);
             });
             // then use async to individually create each option
             async.each(req.body.options, (option, callback) => {
