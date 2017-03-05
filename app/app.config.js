@@ -22,6 +22,10 @@ angular
                 .when('/polls/:id/edit', {
                     template: '<edit-poll-form></edit-poll-form>'
                 })
+                // HOME route for logged in users
+                .when('/users/:username', {
+                    template: '<show-user-polls></show-user-polls>'
+                })
                 // SIGNUP route
                 .when('/signup', {
                     template: '<signup-form></signup-form>'

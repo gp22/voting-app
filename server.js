@@ -119,7 +119,19 @@ app.get('/api/polls/:id', (req, res) => {
         } else {
             res.json(poll);
         }
-    })
+    });
+});
+
+// API for SHOW USER POLLS route
+app.get('/api/users/:username/polls', (req, res) => {
+    const username = req.params.username;
+    Poll.find({ username: username }, (function(err, polls) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(polls);
+        }
+    }));
 });
 
 // UPDATE route
