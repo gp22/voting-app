@@ -19,10 +19,12 @@ angular
                 if (user.username != '' &&
                     user.password != '') {
                     $http.post('/api/login', user).then(res => {
+                        // save the JSON token in the response to local storage
                         $window.localStorage.token = res.data.token;
-                        $location.url('/');
+                        // redirect to their profile page
+                        $location.url('/profile');
                     }, res => {
-                        $location.url('/polls');
+                        $location.url('/');
                     });
                 }
             };
