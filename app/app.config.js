@@ -23,7 +23,7 @@ angular
                     template: '<edit-poll-form></edit-poll-form>'
                 })
                 // HOME route for logged in users
-                .when('/users/:username', {
+                .when('/profile', {
                     template: '<show-user-polls></show-user-polls>'
                 })
                 // SIGNUP route

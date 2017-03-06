@@ -5,11 +5,11 @@ angular
     .module('showUserPolls')
     .component('showUserPolls', {
         templateUrl: '/show-user-polls/show-user-polls.template.html',
-        controller: function showPollsController($routeParams, $http, Auth) {
+        controller: function showPollsController($http, Auth) {
 
             this.polls = {};
             // const username = Auth.currentUser();
-            this.username = $routeParams.username
+            this.username = Auth.currentUser();
 
             // Get the poll to show from the database
             $http.get(`/api/users/${this.username}/polls`).then(res => {

@@ -2,10 +2,15 @@
 
 angular
     .module('mainController', ['authServices'])
-    .controller('mainCtrl', function(Auth, $timeout, $location) {
-        // if (Auth.isLoggedIn()) {
-        //     console.log(`Logged in as: ${Auth.currentUser().username}`);
-        // }
+    .controller('mainCtrl', function(Auth, $timeout, $location, $rootScope) {
+
+        $rootScope.$on('$routeChangeStart', function() {
+            // if someone tries to go to the /profile route and they're not logged in
+            // redirect them to the login page
+            if ($location.path() === '/profile' && !Auth.isLoggedIn()) {
+                $location.path('/login');
+            }
+        });
 
         this.isLoggedIn = function() {
             return Auth.isLoggedIn();
