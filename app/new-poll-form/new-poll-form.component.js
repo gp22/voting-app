@@ -37,7 +37,6 @@ angular
                     options[0].name != '' &&
                     options[1].name != '') {
                     $http.post('/polls', poll).then(res => {
-                        // console.log(res.data);
                         $location.url(`/polls/${res.data._id}`);
                     });
                 }

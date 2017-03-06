@@ -18,7 +18,6 @@ angular
 
         this.logout = function() {
             Auth.logout();
-            // $location.path('/');
             $timeout(function() {
                 $location.path('/');
             }, 2000);

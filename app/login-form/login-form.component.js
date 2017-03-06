@@ -19,7 +19,6 @@ angular
                 if (user.username != '' &&
                     user.password != '') {
                     $http.post('/api/login', user).then(res => {
-                        // console.log(res.data.token);
                         $window.localStorage.token = res.data.token;
                         $location.url('/');
                     }, res => {

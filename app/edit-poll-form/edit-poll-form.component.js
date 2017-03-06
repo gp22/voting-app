@@ -60,8 +60,6 @@ angular
                         this.poll.toDelete.push(this.poll.options[index]._id);
                     }
                     this.poll.options.splice(index, 1);
-                    // console.log(this.poll.toDelete);
-                    // console.log(this.poll);
                 }
             };
 
