@@ -8,7 +8,6 @@ angular
         controller: function signupFormController($http, $window, $location) {
             this.user = {
                 username: '',
-                email: '',
                 password: ''
             };
 
@@ -18,7 +17,6 @@ angular
 
                 // send user to server.js if no fields were left empty
                 if (user.username != '' &&
-                    user.email != '' &&
                     user.password != '') {
                     $http.post('/api/signup', user).then(res => {
                         // save the JSON token in the response to local storage
