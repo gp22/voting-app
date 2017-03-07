@@ -10,6 +10,12 @@ angular
             if ($location.path() === '/profile' && !Auth.isLoggedIn()) {
                 $location.path('/login');
             }
+            if ($location.path() === '/polls/new' && !Auth.isLoggedIn()) {
+                $location.path('/login');
+            }
+            if ($location.path().slice(-5) === '/edit' && !Auth.isLoggedIn()) {
+                $location.path('/login');
+            }
         });
 
         // use Auth.isLoggedIn() to determine if user is logged in
