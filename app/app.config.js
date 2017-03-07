@@ -6,6 +6,10 @@ angular
         function config($locationProvider, $routeProvider) {
 
             $routeProvider
+                // Landing page route
+                .when('/', {
+                    template: '<landing-page></landing-page>'
+                })
                 // INDEX route
                 .when('/polls', {
                     template: '<show-polls></show-polls>'
@@ -21,6 +25,10 @@ angular
                 // EDIT route
                 .when('/polls/:id/edit', {
                     template: '<edit-poll-form></edit-poll-form>'
+                })
+                // HOME route for logged in users
+                .when('/profile', {
+                    template: '<show-user-polls></show-user-polls>'
                 })
                 // SIGNUP route
                 .when('/signup', {

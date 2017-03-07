@@ -1,4 +1,4 @@
 'use strict';
 
 // Define the newPollForm module
-angular.module('newPollForm', []);
+angular.module('newPollForm', ['authServices']);

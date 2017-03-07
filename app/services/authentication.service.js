@@ -29,9 +29,7 @@ angular
                 let payload = token.split('.')[1];
                 payload = $window.atob(payload);
                 payload = JSON.parse(payload);
-                return {
-                    username: payload.username
-                };
+                return payload.username;
             }
         };
 

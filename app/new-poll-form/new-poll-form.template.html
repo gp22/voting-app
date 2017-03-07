@@ -1,10 +1,19 @@
+<div class="jumbotron">
+    <header class="container">
+        <div class="text-center">
+            <h1>Dashboard</h1>
+            <a class="btn btn-success" href="/polls/new">New Poll</a>
+            <a class="btn btn-primary" href="/profile">View Polls</a>
+        </div>
+    </header>
+</div>
 <div class="container">
     <div class="row col-lg-6 col-lg-offset-3 text-center">
         <h1>New Poll</h1>
         <div class="well">
             <h3>Poll Name</h3>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Poll Name" ng-model="$ctrl.poll.name.name">
+                <input class="form-control" type="text" placeholder="Poll Name" ng-model="$ctrl.poll.name">
             </div>
             <hr>
             <h3>Options</h3>

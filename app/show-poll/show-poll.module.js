@@ -1,4 +1,4 @@
 'use strict';
 
 // Define the showPoll module
-angular.module('showPoll', []);
+angular.module('showPoll', ['authServices']);

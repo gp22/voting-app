@@ -5,9 +5,10 @@ angular
     .module('newPollForm')
     .component('newPollForm', {
         templateUrl: '/new-poll-form/new-poll-form.template.html',
-        controller: function newPollFormController($http, $location) {
+        controller: function newPollFormController($http, $location, Auth) {
             this.poll = {
-                name: { name: '' },
+                name: '',
+                username: Auth.currentUser(),
                 options: [
                     {
                         name: '',
@@ -32,11 +33,10 @@ angular
                 }
 
                 // send poll to server.js if no fields were left empty
-                if (poll.name.name != '' &&
+                if (poll.name != '' &&
                     options[0].name != '' &&
                     options[1].name != '') {
                     $http.post('/polls', poll).then(res => {
-                        // console.log(res.data);
                         $location.url(`/polls/${res.data._id}`);
                     });
                 }
