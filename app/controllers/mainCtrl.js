@@ -12,6 +12,7 @@ angular
             }
         });
 
+        // use Auth.isLoggedIn() to determine if user is logged in
         this.isLoggedIn = function() {
             return Auth.isLoggedIn();
         }

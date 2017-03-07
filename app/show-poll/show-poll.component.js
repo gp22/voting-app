@@ -5,7 +5,7 @@ angular
     .module('showPoll')
     .component('showPoll', {
         templateUrl: '/show-poll/show-poll.template.html',
-        controller: function showPollController($routeParams, $http) {
+        controller: function showPollController(Auth, $routeParams, $http) {
 
             this.poll = {};
             // Store the index of the selected option
@@ -15,6 +15,11 @@ angular
             $http.get(`/api/polls/${$routeParams.id}`).then(res => {
                 this.poll = res.data;
             });
+
+            // use Auth.isLoggedIn() to determine if user is logged in
+            this.isLoggedIn = function() {
+                return Auth.isLoggedIn();
+            }
 
             // Increment score value on the selected poll option
             // and update it in the database

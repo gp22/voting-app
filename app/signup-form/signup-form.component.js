@@ -21,24 +21,14 @@ angular
                     user.email != '' &&
                     user.password != '') {
                     $http.post('/api/signup', user).then(res => {
-                        // console.log(res.data);
+                        // save the JSON token in the response to local storage
                         $window.localStorage.token = res.data.token;
-                        $location.url('/');
+                        // redirect to their profile page
+                        $location.url('/profile');
                     }, res => {
                         $location.url('/polls');
                     });
                 }
-            };
-
-            // add another option input field to poll creation form
-            this.addOption = () => {
-                // const options = this.poll.options;
-                // const length = options.length;
-
-                // // add an option if the last object in the array is not empty
-                // if (options[length-1].name !== '') {
-                //     options.push({ name: '', score: 0 });
-                // }
             };
         }
     });
