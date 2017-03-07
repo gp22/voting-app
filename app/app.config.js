@@ -6,6 +6,10 @@ angular
         function config($locationProvider, $routeProvider) {
 
             $routeProvider
+                // Landing page route
+                .when('/', {
+                    template: '<landing-page></landing-page>'
+                })
                 // INDEX route
                 .when('/polls', {
                     template: '<show-polls></show-polls>'
