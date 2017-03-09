@@ -9,22 +9,20 @@
 </div>
 <div class="container">
     <div class="row col-lg-6 col-lg-offset-3">
-        <h1 class="text-center">{{$ctrl.poll.name}}</h1>
         <div class="well">
-            <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options">
-                <div class="panel-body">
-                    <div class="col-xs-11">
-                        <h4>{{option.name}}</h4>
-                    </div>
-                    <div class="col-xs-1">
-                        <label>
-                            <h4><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection"></h4>
-                        </label>
-                    </div>
+            <h2>{{$ctrl.poll.name}}</h2>
+
+            <!-- <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options"> -->
+            <div class="poll-list" ng-repeat="option in $ctrl.poll.options">
+                {{option.name}}
+                <div>
+                    <label>
+                        <input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
+                    </label>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <button class="btn btn-success" ng-click="$ctrl.submitPoll()">Submit Poll</button>
+            <div class="form-group">
+                <button class="btn btn-full" ng-click="$ctrl.submitPoll()">Submit Poll</button>
             </div>
         </div>
     </div>
