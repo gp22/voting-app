@@ -27,7 +27,6 @@ html {
     font-family: 'Lato', 'Arial', sans-serif;
     font-weight: 300;
     font-size: 20px;
-    text-rendering: optimizeLegibility;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -41,16 +40,107 @@ html {
 
 /* ------------------ Headings ------------------ */
 
+h1, h2, h3 {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin-top: 10%;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 240%;
+    word-spacing: 4px;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 180%;
+    word-spacing: 2px;
+}
+
+h3 {
+
+}
+
 /* ------------------ Paragraphs ------------------ */
+
+/* ------------------ Links ------------------ */
+
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #2196F3;
+    transition: color 0.2s;
+}
+
+a:hover,
+a:active {
+    color: #1976D2;
+}
 
 /* ------------------ Icons ------------------ */
 
 /* ------------------ Buttons ------------------ */
 
+.btn:link,
+.btn:visited {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    border-radius: 200px;
+    color: #fff;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.btn-full:link,
+.btn-full:visited {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+    margin-right: 15px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {
+    border: 1px solid #2196F3;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #1976D2;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    border: 1px solid #1976D2;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    border: 1px solid #1976D2;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Header */
 /* -------------------------------------------------------------------------- */
 
+header {
+    background-image: linear-gradient(rgba(5, 59, 101, 0.7), rgba(5, 59, 101, 0.7)), url(background.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+    padding: 100px 0;
+}
+
+.header-text {
+    padding: 0 10%;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+header .btn {
+    margin-bottom: 20px;
+}
 
 /* ------------------ Nav ------------------ */
 
@@ -79,7 +169,6 @@ html {
     padding-bottom: 6px;
     display: block;
     color: #fff;
-    text-decoration: none;
     text-align: center;
     border-bottom: 2px solid #323232;
     transition: border-bottom 0.2s;
