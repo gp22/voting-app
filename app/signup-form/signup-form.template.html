@@ -1,20 +1,14 @@
-<div class="container">
-    <div class="row col-lg-6 col-lg-offset-3 text-center">
-        <h1>Signup</h1>
-        <div class="well">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="userame" ng-model="$ctrl.user.username">
-            </div>
-<!--             <div class="form-group">
-                <input class="form-control" type="text" placeholder="email" ng-model="$ctrl.user.email">
-            </div> -->
-            <div class="form-group">
-                <input class="form-control" type="password" placeholder="password" ng-model="$ctrl.user.password">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-success" ng-click="$ctrl.addUser()">Signup</button>
-            </div>
-            <p>Already have an account? <a href="/login">Login</a> instead</p>
+<div class="row col-lg-6 col-lg-offset-3 text-center">
+    <div class="well">
+        <div class="form-group text-input">
+            <input type="text" placeholder="userame" ng-model="$ctrl.user.username">
         </div>
+        <div class="form-group text-input">
+            <input type="password" placeholder="password" ng-model="$ctrl.user.password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-full" ng-click="$ctrl.addUser()">Signup</button>
+        </div>
+        <p>Already have an account? <a href="/login">Login</a> instead</p>
     </div>
 </div>

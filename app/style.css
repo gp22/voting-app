@@ -65,6 +65,19 @@ h3 {
 
 /* ------------------ Paragraphs ------------------ */
 
+
+/* ------------------ Well ------------------ */
+
+.well {
+    border: 1px solid #BDBDBD;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    margin: 10% auto;
+    padding: 3%;
+    max-width: 400px;
+    text-align: center;
+}
+
 /* ------------------ Links ------------------ */
 
 a:link,
@@ -80,9 +93,20 @@ a:active {
 }
 
 /* ------------------ Icons ------------------ */
+/* ------------------ Forms ------------------ */
 
-/* ------------------ Buttons ------------------ */
+.text-input input {
+    width: 100%;
+    padding: 4px;
+}
 
+.form-group {
+    margin: 20px 0;
+}
+
+/* ------------------ Anchor Buttons ------------------ */
+
+.btn,
 .btn:link,
 .btn:visited {
     display: inline-block;
@@ -93,6 +117,7 @@ a:active {
     transition: background-color 0.2s, border 0.2s;
 }
 
+.btn-full,
 .btn-full:link,
 .btn-full:visited {
     background-color: #2196F3;
