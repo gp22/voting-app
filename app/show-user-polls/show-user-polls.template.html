@@ -1,25 +1,12 @@
-<div class="jumbotron">
-    <header class="container">
-        <div class="text-center">
-            <h1>Dashboard</h1>
-            <a class="btn btn-success" href="/polls/new">New Poll</a>
-            <a class="btn btn-primary" href="/profile">View Polls</a>
-        </div>
-    </header>
-</div>
-<div class="container">
-    <div class="row col-lg-6 col-lg-offset-3 text-center">
-        <h1>All Polls for {{$ctrl.username}}</h1>
-        <div class="row well list-group">
-            <div ng-repeat="poll in $ctrl.polls">
-                <div>
-                    <a href="/polls/{{poll._id}}" class="list-group-item">{{poll.name}}
-                        <button class="btn btn-danger btn-sm margin-sm pull-right">
-                            <!-- <a class="btn btn-danger" href="/polls/{{poll._id}}/edit">Edit Poll</a> -->
-                        </button>
-                    </a>
-                </div>
-            </div>
+<div class="well">
+    <h2>All Polls for {{$ctrl.username}}</h2>
+    <div class="poll-list" ng-repeat="poll in $ctrl.polls">
+        <div>
+            <a href="/polls/{{poll._id}}" class="list-group-item"><p>{{poll.name}}</p>
+                <button class="btn btn-full">Edit
+                    <!-- <a class="btn btn-danger" href="/polls/{{poll._id}}/edit">Edit Poll</a> -->
+                </button>
+            </a>
         </div>
     </div>
 </div>

@@ -20,6 +20,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    letter-spacing: 1px;
 }
 
 html {
@@ -42,7 +43,6 @@ html {
 
 h1, h2, h3 {
     font-weight: 300;
-    letter-spacing: 1px;
 }
 
 h1 {
@@ -164,7 +164,6 @@ header {
 .header-text {
     padding: 0 10%;
     color: #fff;
-    letter-spacing: 1px;
 }
 
 header .btn {
@@ -172,10 +171,6 @@ header .btn {
 }
 
 /* ------------------ Nav ------------------ */
-
-.main-nav {
-    letter-spacing: 1px;
-}
 
 .main-nav ul {
     list-style-type: none;
@@ -218,4 +213,15 @@ header .btn {
     background-color: #fff;
     margin: 4px 0;
     padding: 15px 0;
+}
+
+.poll-list p {
+    font-size: 130%;
+    display: inline-block;
+}
+
+.poll-list input {
+    position: absolute;
+    margin-left: 40px;
+    margin-top: 10px;
 }

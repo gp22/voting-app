@@ -14,11 +14,8 @@
 
             <!-- <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options"> -->
             <div class="poll-list" ng-repeat="option in $ctrl.poll.options">
-                {{option.name}}
                 <div>
-                    <label>
-                        <input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
-                    </label>
+                    <p>{{option.name}}</p><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
                 </div>
             </div>
             <div class="form-group">
