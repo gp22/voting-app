@@ -1,12 +1,7 @@
 <div class="well">
     <h2>All Polls for {{$ctrl.username}}</h2>
     <div class="poll-list" ng-repeat="poll in $ctrl.polls">
-        <div>
-            <a href="/polls/{{poll._id}}" class="list-group-item"><p>{{poll.name}}</p>
-                <button class="btn btn-full">Edit
-                    <!-- <a class="btn btn-danger" href="/polls/{{poll._id}}/edit">Edit Poll</a> -->
-                </button>
-            </a>
-        </div>
+        <a href="/polls/{{poll._id}}" class="list-group-item"><p>{{poll.name}}</p></a>
+        <a class="btn btn-full" href="/polls/{{poll._id}}/edit">Edit</a>
     </div>
 </div>

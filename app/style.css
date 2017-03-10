@@ -126,7 +126,7 @@ a:active {
     margin: 20px 0;
 }
 
-/* ------------------ Anchor Buttons ------------------ */
+/* ------------------ Buttons ------------------ */
 
 .btn,
 .btn:link,
@@ -242,6 +242,12 @@ header .btn {
     position: absolute;
     margin-left: 40px;
     margin-top: 10px;
+}
+
+.poll-list .btn {
+    position: absolute;
+    margin-left: 10px;
+    margin-bottom: 20px;
 }
 
 /* -------------------------------------------------------------------------- */

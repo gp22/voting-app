@@ -3,8 +3,6 @@
 
 <head>
     <title>Voting App</title>
-    <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="grid.css">
@@ -63,27 +61,13 @@
 </head>
 
 <body ng-app="votingApp" ng-controller="mainCtrl as main">
-<!--     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">Voting App</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-hide="main.isLoggedIn()"><a href="/signup">Signup</a></li>
-                <li ng-hide="main.isLoggedIn()"><a href="/login">Login</a></li>
-                <li ng-show="main.isLoggedIn()"><a href="/users/">My Polls</a></li>
-                <li ng-show="main.isLoggedIn()"><a href="#" ng-click="main.logout()">Logout</a></li>
-            </ul>
-        </div>
-    </nav> -->
-
     <nav class="main-nav">
 
         <ul>
             <li class="logo"><a href="/">Voting App</a></li>
             <li ng-hide="main.isLoggedIn()"><a href="/signup">Signup</a></li>
             <li ng-hide="main.isLoggedIn()"><a href="/login">Login</a></li>
-            <li ng-show="main.isLoggedIn()"><a href="/users/">My Polls</a></li>
+            <li ng-show="main.isLoggedIn()"><a href="/profile">My Polls</a></li>
             <li ng-show="main.isLoggedIn()"><a href="#" ng-click="main.logout()">Logout</a></li>
         </ul>
     </nav>
