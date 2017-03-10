@@ -22,6 +22,10 @@ angular
                 .when('/polls/:id', {
                     template: '<show-poll></show-poll>'
                 })
+                // Graph poll route
+                .when('/polls/:id/graph', {
+                    template: '<show-graph></show-graph>'
+                })
                 // EDIT route
                 .when('/polls/:id/edit', {
                     template: '<edit-poll-form></edit-poll-form>'
