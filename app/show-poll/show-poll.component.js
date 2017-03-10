@@ -5,7 +5,7 @@ angular
     .module('showPoll')
     .component('showPoll', {
         templateUrl: '/show-poll/show-poll.template.html',
-        controller: function showPollController(Auth, $routeParams, $http) {
+        controller: function showPollController(Auth, $routeParams, $http, $location) {
 
             this.poll = {};
             // Store the index of the selected option
@@ -31,7 +31,7 @@ angular
                     option.score += 1;
 
                     $http.put(`/polls/${id}`, option).then(res => {
-                        console.log(res.data);
+                        $location.url(`/polls/${$routeParams.id}/graph`);
                     });
                 }
             };

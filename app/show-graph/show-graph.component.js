@@ -19,7 +19,7 @@ angular
                     data.push(option.score);
                 });
 
-                // console.log(labels, data);
+                // console.log(this.poll);
 
                 const ctx = document.getElementById("pollChart");
                 const pollChart = new Chart(ctx, {
@@ -51,7 +51,12 @@ angular
                         }]
                     },
                     options: {
-                        maintainAspectRatio: false
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        title: {
+                            display: false,
+                            text: this.poll.name
+                        }
                     }
                 });
 
