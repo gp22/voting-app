@@ -1,31 +1,13 @@
-<div class="jumbotron" ng-show="$ctrl.isLoggedIn()">
-    <header class="container">
-        <div class="text-center">
-            <h1>Dashboard</h1>
-            <a class="btn btn-success" href="/polls/new">New Poll</a>
-            <a class="btn btn-primary" href="/profile">View Polls</a>
+<div class="well">
+    <h2>{{$ctrl.poll.name}}</h2>
+    <p class="username">By: {{$ctrl.poll.username}}</p>
+    <!-- <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options"> -->
+    <div class="poll-list" ng-repeat="option in $ctrl.poll.options">
+        <div>
+            <p>{{option.name}}</p><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
         </div>
-    </header>
-</div>
-<div class="container">
-    <div class="row col-lg-6 col-lg-offset-3">
-        <h1 class="text-center">{{$ctrl.poll.name}}</h1>
-        <div class="well">
-            <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options">
-                <div class="panel-body">
-                    <div class="col-xs-11">
-                        <h4>{{option.name}}</h4>
-                    </div>
-                    <div class="col-xs-1">
-                        <label>
-                            <h4><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection"></h4>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group text-center">
-                <button class="btn btn-success" ng-click="$ctrl.submitPoll()">Submit Poll</button>
-            </div>
-        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-full" ng-click="$ctrl.submitPoll()">Submit Poll</button>
     </div>
 </div>

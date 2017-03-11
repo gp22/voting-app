@@ -151,9 +151,8 @@ app.put('/polls/:id', (req, res) => {
                 optionsToCreate.push(option);
             }
         });
-
         // then use async to create each new option and add it to the poll
-        Poll.findById(req.body._id, (err, poll) => {
+        Poll.findById(req.body._id, function(err, poll) {
             if (err) {
                 console.log(err);
             } else {
@@ -161,8 +160,8 @@ app.put('/polls/:id', (req, res) => {
                 async.series([
                     function(callback) {
                         if (optionsToDelete.length != 0) {
-                            async.each(optionsToDelete, (option, callback) => {
-                                Option.findByIdAndRemove(option, (err, optionToDelete) => {
+                            async.each(optionsToDelete, function(option, callback) {
+                                Option.findByIdAndRemove(option, function(err, optionToDelete) {
                                     if (err) {
                                         return callback(err);
                                     } else {
@@ -172,48 +171,59 @@ app.put('/polls/:id', (req, res) => {
                                         callback();
                                     }
                                 });
+                            }, function(err) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    // save the poll once options deleted
+                                    poll.save();
+                                }
                             });
-                            callback(null);
                         }
+                        callback(null);
                     },
                     function(callback) {
+                        // add poll id to each new option
+                        optionsToCreate.forEach(option => {
+                            option.poll_id = poll._id;
+                        });
                         // create each new option
-                        async.each(optionsToCreate, (option, callback) => {
-                            Option.create(option, (err, option) => {
+                        async.each(optionsToCreate, function(option, callback) {
+                            Option.create(option, function(err, option) {
                                 if (err) {
                                     return callback(err);
                                 } else {
-                                    // and add it to the poll
+                                    // add the option to the poll
                                     poll.options.push(option);
                                     callback();
                                 }
                             });
+                        }, function(err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                // save the poll once all new options created
+                                poll.save();
+                            }
                         });
                         callback(null);
                     },
                     function(callback) {
                         // and update the existing options
-                        async.each(optionsToUpdate, (option, callback) => {
+                        async.each(optionsToUpdate, function(option, callback) {
                             const name = { name: option.name };
-                            Option.findByIdAndUpdate(option._id, name, { new: true }, (err, option) => {
+                            Option.findByIdAndUpdate(option._id, name, { new: true }, function(err, option) {
                                 if (err) {
                                     return callback(err);
                                 } else {
                                     callback();
                                 }
                             });
-                        }, (err) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                // save the poll once all updates are done
-                                poll.save();
-                            }
                         });
                         callback(null);
                     }
                 ],
-                (err, result) => {
+                function(err, result) {
                     if (err) {
                         console.log(err);
                     } else {
@@ -228,7 +238,7 @@ app.put('/polls/:id', (req, res) => {
         // submit the poll
         // get score from request and create new object
         const score = { score: req.body.score };
-        Option.findByIdAndUpdate(req.params.id, score, { new: true }, (err, option) => {
+        Option.findByIdAndUpdate(req.params.id, score, { new: true }, function(err, option) {
             if (err) {
                 console.log(err);
             } else {
@@ -241,11 +251,19 @@ app.put('/polls/:id', (req, res) => {
 // DELETE route
 app.delete('/polls/:id', (req, res) => {
     const id = req.params.id;
+    // first remove the poll
     Poll.findByIdAndRemove(id, (err, poll) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(poll);
+            // delete the options associated with the poll
+            Option.remove({ poll_id: id }, (err, options) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(poll + options);
+                }
+            });
         }
     });
 });
