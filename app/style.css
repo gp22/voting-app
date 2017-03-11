@@ -140,6 +140,20 @@ a:active {
     transition: background-color 0.2s, border 0.2s;
 }
 
+.btn-success,
+.btn-success:link,
+.btn-success:visited {
+    background-color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.btn-danger,
+.btn-danger:link,
+.btn-danger:visited {
+    background-color: #f44336;
+    border: 1px solid #f44336;
+}
+
 .btn-full,
 .btn-full:link,
 .btn-full:visited {
@@ -152,18 +166,27 @@ a:active {
     border: 1px solid #2196F3;
 }
 
-.btn:hover,
-.btn:active {
-    background-color: #1976D2;
+.btn-success:hover,
+.btn-success:active {
+    background-color: #28B062;
+    border: 1px solid #28B062;
+}
+
+.btn-danger:hover,
+.btn-danger:active {
+    background-color: #DA1A0C;
+    border: 1px solid #DA1A0C;
 }
 
 .btn-full:hover,
 .btn-full:active {
+    background-color: #1976D2;
     border: 1px solid #1976D2;
 }
 
 .btn-ghost:hover,
 .btn-ghost:active {
+    background-color: #1976D2;
     border: 1px solid #1976D2;
 }
 

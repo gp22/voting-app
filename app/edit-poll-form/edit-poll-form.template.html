@@ -3,16 +3,14 @@
     <h2>{{$ctrl.poll.name}}</h2>
     <h3>Options</h3>
     <div ng-repeat="option in $ctrl.poll.options">
-        <div class="form-group">
+        <div class="form-group text-input">
             <input class="form-control" type="text" placeholder="Option" ng-model="option.name">
-            <span class="input-group-btn">
-                <button class="btn btn-full" ng-click="$ctrl.deleteOption($index)">Delete</button>
-            </span>
+            <button class="btn btn-danger" ng-click="$ctrl.deleteOption($index)">Delete</button>
         </div>
     </div>
     <div class="form-group">
         <button class="btn btn-full" ng-click="$ctrl.addOption()">Add Option</button>
-        <button class="btn btn-full" ng-click="$ctrl.updatePoll()">Update Poll</button>
-        <button class="btn btn-full" ng-click="$ctrl.deletePoll()">Delete Poll</button>
+        <button class="btn btn-success" ng-click="$ctrl.updatePoll()">Update Poll</button>
+        <button class="btn btn-danger" ng-click="$ctrl.deletePoll()">Delete Poll</button>
     </div>
 </div>

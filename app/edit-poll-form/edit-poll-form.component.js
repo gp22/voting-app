@@ -67,7 +67,7 @@ angular
             // delete the entire poll
             this.deletePoll = () => {
                 $http.delete(`/polls/${id}`).then(res => {
-                    $location.url('/');
+                    $location.url('/profile');
                 });
             };
         }
