@@ -247,11 +247,19 @@ app.put('/polls/:id', (req, res) => {
 // DELETE route
 app.delete('/polls/:id', (req, res) => {
     const id = req.params.id;
+    // first remove the poll
     Poll.findByIdAndRemove(id, (err, poll) => {
         if (err) {
             console.log(err);
         } else {
-            res.json(poll);
+            // delete the options associated with the poll
+            Option.remove({ poll_id: id }, (err, options) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.json(poll + options);
+                }
+            });
         }
     });
 });
