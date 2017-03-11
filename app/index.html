@@ -67,8 +67,8 @@
             <li class="logo"><a href="/">Voting App</a></li>
             <li ng-hide="main.isLoggedIn()"><a href="/signup">Signup</a></li>
             <li ng-hide="main.isLoggedIn()"><a href="/login">Login</a></li>
-            <li ng-show="main.isLoggedIn()"><a href="/profile">My Polls</a></li>
             <li ng-show="main.isLoggedIn()"><a href="#" ng-click="main.logout()">Logout</a></li>
+            <li ng-show="main.isLoggedIn()"><a href="/profile">My Polls</a></li>
         </ul>
     </nav>
     <!-- use ng-view directive for use with angular routing -->
