@@ -183,13 +183,17 @@ app.put('/polls/:id', (req, res) => {
                         callback(null);
                     },
                     function(callback) {
+                        // add poll id to each new option
+                        optionsToCreate.forEach(option => {
+                            option.poll_id = poll._id;
+                        });
                         // create each new option
                         async.each(optionsToCreate, function(option, callback) {
                             Option.create(option, function(err, option) {
                                 if (err) {
                                     return callback(err);
                                 } else {
-                                    // and add it to the poll
+                                    // add the option to the poll
                                     poll.options.push(option);
                                     callback();
                                 }
