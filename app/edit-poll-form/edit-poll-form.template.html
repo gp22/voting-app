@@ -4,7 +4,7 @@
     <h3>Options</h3>
     <div ng-repeat="option in $ctrl.poll.options">
         <div class="form-group text-input">
-            <input class="form-control" type="text" placeholder="Option" ng-model="option.name">
+            <input type="text" placeholder="Option" ng-model="option.name">
             <button class="btn btn-danger" ng-click="$ctrl.deleteOption($index)">Delete</button>
         </div>
     </div>
