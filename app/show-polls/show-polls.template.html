@@ -1,7 +1,7 @@
 <div>
     <div class="well">
         <h2>All Polls</h2>
-        <div class="poll-list" ng-repeat="poll in $ctrl.polls">
+        <div class="list-group poll-list" ng-repeat="poll in $ctrl.polls">
             <a href="/polls/{{poll._id}}" class="list-group-item"><p>{{poll.name}}</p></a>
         </div>
     </div>

@@ -126,6 +126,10 @@ a:active {
     margin: 20px 0;
 }
 
+.edit-poll-input input {
+    width: 80%;
+}
+
 /* ------------------ Buttons ------------------ */
 
 .btn,
@@ -211,6 +215,10 @@ header .btn {
     margin-bottom: 20px;
 }
 
+header p {
+    margin-top: 20px;
+}
+
 /* ------------------ Nav ------------------ */
 
 .main-nav ul {
@@ -248,7 +256,7 @@ header .btn {
 /* Poll list */
 /* -------------------------------------------------------------------------- */
 
-.poll-list {
+.list-group {
     border: 1px solid #BDBDBD;
     border-radius: 2px;
     background-color: #fff;
@@ -273,9 +281,12 @@ header .btn {
     margin-bottom: 20px;
 }
 
-.poll-list-user {
-    /*position: absolute;*/
-    /*width: 80%;*/
+.poll-list-user p {
+    width: 80%;
+}
+
+.poll-list-user a {
+    width: 20%;
 }
 
 /* -------------------------------------------------------------------------- */
