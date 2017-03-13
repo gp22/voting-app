@@ -1,5 +1,6 @@
 <div class="well">
     <h2>All Polls for {{$ctrl.username}}</h2>
+    <h3 class="error-msg" ng-show="$ctrl.errorMsg">{{$ctrl.errorMsg}}</h3>
     <div class="list-group" ng-repeat="poll in $ctrl.polls">
         <a class="poll-list poll-list-user" href="/polls/{{poll._id}}"><p>{{poll.name}}</p></a>
         <a class="btn btn-full" href="/polls/{{poll._id}}/edit">Edit</a>

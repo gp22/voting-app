@@ -46,9 +46,8 @@ h1, h2, h3 {
 }
 
 h1 {
-    margin-top: 10%;
+    margin-top: 40px;
     margin-bottom: 20px;
-    color: #fff;
     font-size: 240%;
     word-spacing: 4px;
 }
@@ -207,16 +206,16 @@ a:active {
 /* -------------------------------------------------------------------------- */
 
 header {
-    background-image: linear-gradient(rgba(5, 59, 101, 0.7), rgba(5, 59, 101, 0.7)), url(background.jpg);
-    background-size: cover;
-    background-position: center;
-    height: 95vh;
+    /*background-image: linear-gradient(rgba(5, 59, 101, 0.7), rgba(5, 59, 101, 0.7)), url(background.jpg);*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*height: 95vh;*/
+    background-color: #f7f7f7;
     padding: 100px 0;
 }
 
 .header-text {
     padding: 0 10%;
-    color: #fff;
 }
 
 header .btn {
