@@ -11,5 +11,6 @@
     <div class="form-group">
         <button class="btn btn-full" ng-click="$ctrl.addUser()">Signup</button>
     </div>
+    <p class="error-msg" ng-show="$ctrl.errorMsg">{{$ctrl.errorMsg}}</p>
     <p>Already have an account? <a href="/login">Login</a></p>
 </div>

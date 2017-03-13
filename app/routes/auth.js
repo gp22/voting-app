@@ -1,5 +1,6 @@
 'use strict';
 
+const User = require('../../models/user');
 const passport = require('passport');
 const express = require('express');
 const router = express.Router();
@@ -15,17 +16,29 @@ router.post('/api/signup', function(req, res, next) {
         return res.status(400).json({ message: 'Please fill out all fields'});
     }
 
-    let user = new User();
-    user.username = req.body.username;
-    user.setPassword(req.body.password);
-
-    user.save(function(err) {
+    // check if the user already exists in the db
+    // if it does, send an error response, otherwise create the user
+    User.findOne({ username: req.body.username}, function(err, foundUser) {
         if (err) {
-            return next(err);
+            console.log(err);
+        } else {
+            if (foundUser) {
+                return res.status(400).json({ message: 'Username already taken'});
+            } else {
+                let user = new User();
+                user.username = req.body.username;
+                user.setPassword(req.body.password);
+
+                user.save(function(err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    // generate the JSON web token and send it in the response
+                    const token = user.generateJwt();
+                    return res.status(201).json({ "token": token });
+                });
+            }
         }
-        // generate the JSON web token and send it in the response
-        const token = user.generateJwt();
-        return res.status(201).json({ "token": token });
     });
 });
 
