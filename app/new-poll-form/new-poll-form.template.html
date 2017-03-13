@@ -1,13 +1,17 @@
 <div class="well">
     <h2>New Poll</h2>
-    <h3>Poll Name</h3>
-    <div class="form-group text-input">
-        <input class="form-control" type="text" placeholder="Poll Name" ng-model="$ctrl.poll.name">
-    </div>
-    <h3>Options</h3>
-    <div ng-repeat="option in $ctrl.poll.options">
+    <div class="text-input">
+        <p>Enter a question to ask</p>
         <div class="form-group text-input">
-            <input class="form-control" type="text" placeholder="Option" ng-model="option.name">
+            <input class="form-control" type="text" ng-model="$ctrl.poll.name">
+        </div>
+    </div>
+    <div class="text-input">
+        <p>Enter at least two possible responses</p>
+        <div ng-repeat="option in $ctrl.poll.options">
+            <div class="form-group text-input">
+                <input class="form-control" type="text" ng-model="option.name">
+            </div>
         </div>
     </div>
     <div class="form-group">

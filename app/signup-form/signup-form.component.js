@@ -11,22 +11,24 @@ angular
                 password: ''
             };
 
+            // create the app object for displaying error messages
+            let app = this;
+
             // send user data to server.js
             this.addUser = () => {
                 const user = this.user;
 
-                // send user to server.js if no fields were left empty
-                if (user.username != '' &&
-                    user.password != '') {
-                    $http.post('/api/signup', user).then(res => {
-                        // save the JSON token in the response to local storage
-                        $window.localStorage.token = res.data.token;
-                        // redirect to their profile page
-                        $location.url('/profile');
-                    }, res => {
-                        $location.url('/polls');
-                    });
-                }
+                $http.post('/api/signup', user).then(res => {
+                    // if the signup was successful
+                    // save the JSON token in the response to local storage
+                    $window.localStorage.token = res.data.token;
+                    // redirect to their profile page
+                    $location.url('/profile');
+                }, res => {
+                    // otherwise
+                    // display the error message
+                    app.errorMsg = res.data.message;
+                });
             };
         }
     });

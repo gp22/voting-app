@@ -2,12 +2,12 @@
     <h2>{{$ctrl.poll.name}}</h2>
     <p class="username">By: {{$ctrl.poll.username}}</p>
     <!-- <div class="radio panel panel-default" ng-repeat="option in $ctrl.poll.options"> -->
-    <div class="poll-list" ng-repeat="option in $ctrl.poll.options">
+    <div class="list-group poll-list" ng-repeat="option in $ctrl.poll.options">
         <div>
             <p>{{option.name}}</p><input type="radio" name="poll" value="{{$index}}" ng-model="$ctrl.selection">
         </div>
     </div>
     <div class="form-group">
-        <button class="btn btn-full" ng-click="$ctrl.submitPoll()">Submit Poll</button>
+        <button class="btn btn-success" ng-click="$ctrl.submitPoll()">Submit Poll</button>
     </div>
 </div>
