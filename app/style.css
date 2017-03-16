@@ -117,7 +117,7 @@ a:active {
 
 .text-input input {
     width: 100%;
-    padding: 4px;
+    /*padding: 4px;*/
 }
 
 .text-input p {
@@ -125,7 +125,13 @@ a:active {
 }
 
 .form-group {
-    margin: 20px 0;
+    margin: 10px 0 10px 0;
+}
+
+input {
+    padding: 10px 6px 2px 6px;
+    border: none;
+    border-bottom: 2px solid #BDBDBD;
 }
 
 /* ------------------ Buttons ------------------ */
@@ -258,43 +264,38 @@ header p {
     /*border: 1px solid #BDBDBD;*/
     border-radius: 2px;
     background-color: #fff;
-    margin: 4px 0;
+    margin: 8px 0;
     padding: 15px 0;
 }
 
 .poll-list p {
     font-size: 130%;
+    width: 85%;
     display: inline-block;
-}
-
-.poll-list input {
-    position: absolute;
-    margin-left: 40px;
-    margin-top: 10px;
-}
-
-.poll-list .btn {
-    position: absolute;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    vertical-align: middle;
 }
 
 .poll-list-user p {
-    width: 80%;
+    width: 70%;
+    display: inline-block;
 }
 
 .poll-list-user a {
     width: 20%;
 }
 
-.edit-list-group .btn {
+.list-group .btn {
     padding: 8px 1%;
     width: 20%;
 }
 
-.edit-list-group input {
-    padding: 6px;
+.list-group input {
     width: 70%;
+}
+
+.list-group input[type=radio] {
+    display: inline-block;
+    width: 15%;
 }
 
 .btn-group {

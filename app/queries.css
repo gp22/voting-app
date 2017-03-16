@@ -26,6 +26,11 @@
         padding: 30px 0;
     }
 
+    .well-narrow {
+        margin: 20px auto;
+        padding: 30px 5%;
+    }
+
  /*   .btn,
     .btn:link,
     .btn:visited {
