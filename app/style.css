@@ -58,10 +58,6 @@ h2 {
     word-spacing: 2px;
 }
 
-h3 {
-
-}
-
 /* ------------------ Messages ------------------ */
 
 .error-msg {
@@ -72,13 +68,13 @@ h3 {
 /* ------------------ Well ------------------ */
 
 .well {
-    border: 1px solid #BDBDBD;
     background-color: #f7f7f7;
     border-radius: 4px;
     margin: 20px auto;
-    padding: 40px 20px;
+    padding: 40px 5%;
     max-width: 800px;
     text-align: center;
+    box-shadow: 0px 4px 10px #F8F8F8;
 }
 
 .well h2 {
@@ -122,7 +118,6 @@ a:active {
 
 .text-input input {
     width: 100%;
-    padding: 4px;
 }
 
 .text-input p {
@@ -130,11 +125,13 @@ a:active {
 }
 
 .form-group {
-    margin: 20px 0;
+    margin: 10px 0 10px 0;
 }
 
-.edit-poll-input input {
-    width: 80%;
+input {
+    padding: 10px 6px 2px 6px;
+    border: none;
+    border-bottom: 2px solid #BDBDBD;
 }
 
 /* ------------------ Buttons ------------------ */
@@ -149,6 +146,7 @@ a:active {
     border-radius: 4px;
     color: #fff;
     transition: background-color 0.2s, border 0.2s;
+    box-shadow: 1px 2px 4px #efefef;
 }
 
 .btn-success,
@@ -228,11 +226,14 @@ header p {
 
 /* ------------------ Nav ------------------ */
 
+nav {
+    box-shadow: 0px 4px 10px #E2E2E2;
+}
+
 .main-nav ul {
     list-style-type: none;
     overflow: auto;
     background-color: #323232;
-
 }
 
 .main-nav li {
@@ -264,36 +265,49 @@ header p {
 /* -------------------------------------------------------------------------- */
 
 .list-group {
-    border: 1px solid #BDBDBD;
     border-radius: 2px;
     background-color: #fff;
-    margin: 4px 0;
+    margin: 8px 0;
     padding: 15px 0;
+    box-shadow: 1px 2px 4px #efefef;
 }
 
 .poll-list p {
     font-size: 130%;
+    width: 85%;
     display: inline-block;
-}
-
-.poll-list input {
-    position: absolute;
-    margin-left: 40px;
-    margin-top: 10px;
-}
-
-.poll-list .btn {
-    position: absolute;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    vertical-align: middle;
 }
 
 .poll-list-user p {
-    width: 80%;
+    width: 70%;
+    display: inline-block;
 }
 
 .poll-list-user a {
     width: 20%;
+}
+
+.list-group .btn {
+    padding: 8px 1%;
+    width: 20%;
+}
+
+.list-group input {
+    width: 70%;
+}
+
+.list-group input[type=radio] {
+    display: inline-block;
+    width: 15%;
+}
+
+.btn-group {
+    margin: 20px 0;
+}
+
+.btn-group .btn {
+    margin: 5px;
 }
 
 /* -------------------------------------------------------------------------- */
