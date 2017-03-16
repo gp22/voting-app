@@ -1,13 +1,12 @@
 <div class="well">
     <h2>Edit Poll</h2>
     <h3>{{$ctrl.poll.name}}</h3>
-    <div ng-repeat="option in $ctrl.poll.options">
-        <div class="form-group edit-poll-input">
-            <input type="text" placeholder="Option" ng-model="option.name">
-            <button class="btn btn-danger" ng-click="$ctrl.deleteOption($index)">Delete</button>
-        </div>
+    <div class="list-group edit-list-group" ng-repeat="option in $ctrl.poll.options">
+            <!-- <div class="form-group edit-poll-input"> -->
+        <input type="text" placeholder="Option" ng-model="option.name">
+        <button class="btn btn-danger" ng-click="$ctrl.deleteOption($index)">Delete</button>
     </div>
-    <div class="form-group">
+    <div class="btn-group">
         <button class="btn btn-full" ng-click="$ctrl.addOption()">Add Option</button>
         <button class="btn btn-success" ng-click="$ctrl.updatePoll()">Update Poll</button>
         <button class="btn btn-danger" ng-click="$ctrl.deletePoll()">Delete Poll</button>
