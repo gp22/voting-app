@@ -74,6 +74,7 @@ h2 {
     padding: 40px 5%;
     max-width: 800px;
     text-align: center;
+    box-shadow: 0px 4px 10px #F8F8F8;
 }
 
 .well h2 {
@@ -117,7 +118,6 @@ a:active {
 
 .text-input input {
     width: 100%;
-    /*padding: 4px;*/
 }
 
 .text-input p {
@@ -146,6 +146,7 @@ input {
     border-radius: 4px;
     color: #fff;
     transition: background-color 0.2s, border 0.2s;
+    box-shadow: 1px 2px 4px #efefef;
 }
 
 .btn-success,
@@ -225,11 +226,14 @@ header p {
 
 /* ------------------ Nav ------------------ */
 
+nav {
+    box-shadow: 0px 4px 10px #E2E2E2;
+}
+
 .main-nav ul {
     list-style-type: none;
     overflow: auto;
     background-color: #323232;
-
 }
 
 .main-nav li {
@@ -261,11 +265,11 @@ header p {
 /* -------------------------------------------------------------------------- */
 
 .list-group {
-    /*border: 1px solid #BDBDBD;*/
     border-radius: 2px;
     background-color: #fff;
     margin: 8px 0;
     padding: 15px 0;
+    box-shadow: 1px 2px 4px #efefef;
 }
 
 .poll-list p {
