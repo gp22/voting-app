@@ -3,8 +3,17 @@
 const Option = require('../../models/option');
 const Poll = require('../../models/poll');
 const express = require('express');
+const jwt = require('express-jwt');
 const router = express.Router();
 const async = require('async');
+
+
+/*
+Configure express-jwt, tell it the secret, and the name of the property to
+create on the req object that will hold the JWT, in this case - 'payload'
+*/
+
+const auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
 
 /*
 Poll routes
