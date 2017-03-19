@@ -61,6 +61,13 @@ app.use(pollRoutes);
 app.use(authRoutes);
 app.use(indexRoutes);
 
+// error handler for unauthorized route errors
+app.use(function(err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({ "message": err.name + ": " + err.message });
+    }
+});
+
 /*
 Connect to mongodb and start server
 */

@@ -90,7 +90,7 @@ router.get('/api/polls/:id', (req, res) => {
 });
 
 // API for SHOW USER POLLS route
-router.get('/api/users/:username/polls', (req, res) => {
+router.get('/api/users/:username/polls', auth, (req, res) => {
     const username = req.params.username;
     Poll.find({ username: username }, (function(err, polls) {
         if (err) {
