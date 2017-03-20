@@ -31,13 +31,13 @@ app.use(bodyParser.json());
 /*
 Configure Passport
 */
-app.use(require('express-session')({
-    secret: 'gold trianlge white cloud green palm tree',
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(require('express-session')({
+//     secret: 'gold trianlge white cloud green palm tree',
+//     resave: false,
+//     saveUninitialized: false
+// }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // passport local strategy, code help from:
 // https://thinkster.io/tutorials/mean-stack/setting-up-passport
