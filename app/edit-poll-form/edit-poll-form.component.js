@@ -5,7 +5,7 @@ angular
     .module('editPollForm')
     .component('editPollForm', {
         templateUrl: '/edit-poll-form/edit-poll-form.template.html',
-        controller: function editPollFormController($routeParams, $http, $location) {
+        controller: function editPollFormController($routeParams, $http, $location, $window) {
 
             const id = $routeParams.id;
             this.poll = {};
@@ -15,6 +15,9 @@ angular
                 this.poll = res.data;
                 this.poll.toDelete = [];
             });
+
+            // store the token for sending in the Authorization header
+            const token = $window.localStorage.token;
 
             // send updated poll data to the EDIT route of server.js
             this.updatePoll = () => {
@@ -34,7 +37,13 @@ angular
                 // send updated poll to server.js if no fields were left empty
                 if (options[0].name != '' &&
                     options[1].name != '') {
-                    $http.put(`/polls/${id}`, poll).then(res => {
+                    $http.put(`/polls/${id}`, poll, {
+                        // add the token to the Authorization header
+                        // to get access to the protected express route
+                        headers: {
+                            Authorization: 'Bearer ' + token
+                        }
+                    }).then(res => {
                         $location.url(`/polls/${id}`);
                     });
                 }
@@ -66,7 +75,13 @@ angular
 
             // delete the entire poll
             this.deletePoll = () => {
-                $http.delete(`/polls/${id}`).then(res => {
+                $http.delete(`/polls/${id}`, {
+                    // add the token to the Authorization header
+                    // to get access to the protected express route
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }).then(res => {
                     $location.url('/profile');
                 });
             };

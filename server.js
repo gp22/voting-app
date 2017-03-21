@@ -31,13 +31,13 @@ app.use(bodyParser.json());
 /*
 Configure Passport
 */
-app.use(require('express-session')({
-    secret: 'gold trianlge white cloud green palm tree',
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(require('express-session')({
+//     secret: 'gold trianlge white cloud green palm tree',
+//     resave: false,
+//     saveUninitialized: false
+// }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // passport local strategy, code help from:
 // https://thinkster.io/tutorials/mean-stack/setting-up-passport
@@ -60,6 +60,13 @@ passport.use(new LocalStrategy(
 app.use(pollRoutes);
 app.use(authRoutes);
 app.use(indexRoutes);
+
+// error handler for unauthorized route errors
+app.use(function(err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({ "message": err.name + ": " + err.message });
+    }
+});
 
 /*
 Connect to mongodb and start server

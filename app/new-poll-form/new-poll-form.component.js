@@ -5,7 +5,7 @@ angular
     .module('newPollForm')
     .component('newPollForm', {
         templateUrl: '/new-poll-form/new-poll-form.template.html',
-        controller: function newPollFormController($http, $location, Auth) {
+        controller: function newPollFormController($http, $location, $window, Auth) {
             this.poll = {
                 name: '',
                 username: Auth.currentUser(),
@@ -20,6 +20,9 @@ angular
                     }
                 ]
             };
+
+            // store the token for sending in the Authorization header
+            const token = $window.localStorage.token;
 
             // send poll data to server.js
             this.createPoll = () => {
@@ -36,7 +39,13 @@ angular
                 if (poll.name != '' &&
                     options[0].name != '' &&
                     options[1].name != '') {
-                    $http.post('/polls', poll).then(res => {
+                    $http.post('/polls', poll, {
+                        // add the token to the Authorization header
+                        // to get access to the protected express route
+                        headers: {
+                            Authorization: 'Bearer ' + token
+                        }
+                    }).then(res => {
                         $location.url(`/polls/${res.data._id}`);
                     });
                 }

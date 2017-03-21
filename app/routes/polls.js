@@ -3,8 +3,17 @@
 const Option = require('../../models/option');
 const Poll = require('../../models/poll');
 const express = require('express');
+const jwt = require('express-jwt');
 const router = express.Router();
 const async = require('async');
+
+
+/*
+Configure express-jwt, tell it the secret, and the name of the property to
+create on the req object that will hold the JWT, in this case - 'payload'
+*/
+
+const auth = jwt({ secret: 'SECRET', requestProperty: 'payload' });
 
 /*
 Poll routes
@@ -32,7 +41,8 @@ router.get('/polls/new', (req, res) => {
 });
 
 // CREATE route
-router.post('/polls', (req, res) => {
+// restrict access with the jwt auth strategy
+router.post('/polls', auth, (req, res) => {
     // first create the poll
     const name = req.body.name;
     const username = req.body.username;
@@ -81,7 +91,8 @@ router.get('/api/polls/:id', (req, res) => {
 });
 
 // API for SHOW USER POLLS route
-router.get('/api/users/:username/polls', (req, res) => {
+// restrict access with the jwt auth strategy
+router.get('/api/users/:username/polls', auth, (req, res) => {
     const username = req.params.username;
     Poll.find({ username: username }, (function(err, polls) {
         if (err) {
@@ -93,7 +104,8 @@ router.get('/api/users/:username/polls', (req, res) => {
 });
 
 // UPDATE route
-router.put('/polls/:id', (req, res) => {
+// restrict access with the jwt auth strategy
+router.put('/polls/:id', auth, (req, res) => {
     // check if this is a poll update request or a poll submission
     if (req.body.action === 'updatePoll') {
         // separate options to update and options to create
@@ -207,7 +219,8 @@ router.put('/polls/:id', (req, res) => {
 });
 
 // DELETE route
-router.delete('/polls/:id', (req, res) => {
+// restrict access with the jwt auth strategy
+router.delete('/polls/:id', auth, (req, res) => {
     const id = req.params.id;
     // first remove the poll
     Poll.findByIdAndRemove(id, (err, poll) => {
